@@ -3,6 +3,9 @@
 Wordle, mas melhor
 ---
 
+<img src="https://www.videogameschronicle.com/files/2022/01/wordle-d.jpg" width="250">
+
+
 # Enunciado
 
 T5: **O Jogo Wordle** — O jogo de plavras que permite que desafia o jogador a tentar “adivinhar”
