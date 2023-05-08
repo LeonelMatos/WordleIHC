@@ -2,9 +2,14 @@
 
 <img src="https://www.videogameschronicle.com/files/2022/01/wordle-d.jpg" width="250">
 
-## Github
+### Github
 
 - [x] Criar repositório
+
+## Interface
+
+- [ ] Resisable
+- [ ] Multiple views solução
 
 ## Perfis
 
