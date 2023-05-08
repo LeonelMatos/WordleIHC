@@ -1,4 +1,5 @@
 # WordleIHC
+
 Wordle, mas melhor
 ---
 
@@ -18,12 +19,13 @@ mais rico e consequentemente mais valorizado. Os aspectos de interacção Homem-
 funcional, quer a nível estético, terão, naturalmente, uma importância particular na avaliação. Não
 esquecer que a implementação terá obrigatoriamente de seguir a arquitetura MVC.
 Regras Gerais:
+
 1. Os trabalhos serão realizados individualmente, ou em grupos de no máximo três alunos. Qualquer
-vestígio de plágio implicará na anulação do trabalho e consequente reprovação na unidade.
+   vestígio de plágio implicará na anulação do trabalho e consequente reprovação na unidade.
 2. Cada aluno/grupo terá de informar o docente, até ao dia 5 de maio de 2023, sobre os
-constituintes do grupo e qual o trabalho escolhido.
+   constituintes do grupo e qual o trabalho escolhido.
 3. O trabalho terá de ser submetido **até às 23h59 do dia 2 de junho de 2023**. **Atrasos não são
-permitidos**, implicando a anulação do trabalho! A submissão será realizada no Moodle.
+   permitidos**, implicando a anulação do trabalho! A submissão será realizada no Moodle.
 4. O trabalho terá de ser **defendido**, na última semana de aulas, entre os dias **5 e 7 de junho**,
-durante as aulas práticas, ou em horário suplementar, se tal for necessário. Mais detalhes serão
-fornecido até ao dia 4 de junho de 2023.
+   durante as aulas práticas, ou em horário suplementar, se tal for necessário. Mais detalhes serão
+   fornecido até ao dia 4 de junho de 2023.
