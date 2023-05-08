@@ -33,3 +33,7 @@
 **Bibliotecas de palavras:**
 - Collins Scrabble Words?
 - CSW19
+
+# Recursos
+
+- https://github.com/iAmGio/animated
