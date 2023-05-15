@@ -36,6 +36,9 @@
                       <MenuItem mnemonicParsing="false" text="1" />
                       <MenuItem mnemonicParsing="false" text="2" />
                     </items>
+                     <font>
+                        <Font name="Georgia" size="14.0" />
+                     </font>
                   </SplitMenuButton>
                </children>
             </HBox>
