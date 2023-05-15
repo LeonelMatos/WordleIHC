@@ -44,3 +44,21 @@
 
 **start-view (StartController)**
 
+````
+Menu inicial:
+                
+               (FOTO *1)
+     TÍTULO
+    
+    (JOGAR)(Dificuldade *2)
+
+  (DEFINIÇÕES)
+  
+     (SAIR)
+
+````
+
+_*1: Imagem do perfil atualmente selecionado. Ao clicar na imagem
+abre o menu de perfis._
+_*2: Dropdown da dificuldade do jogo (de 3 a 7 letras, ou seja, 5 níveis
+de dificuldade)._

@@ -5,30 +5,52 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="25.0" style="-fx-background-color: #313e44;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #DDDDDD;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ubi.wordle.StartController">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="178.0" prefWidth="544.0" text="WORDLE IHC" textAlignment="CENTER" textFill="WHITE" VBox.vgrow="SOMETIMES">
-         <font>
-            <Font name="Comic Sans MS Bold" size="48.0" />
-         </font>
-      </Label>
-      <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #546a75;" text="Jogar" textAlignment="CENTER" textFill="WHITE" VBox.vgrow="SOMETIMES">
-         <font>
-            <Font name="Comic Sans MS Bold" size="18.0" />
-         </font>
-      </Button>
-      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="271.0" layoutY="302.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #546a75;" text="Perfis" textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font name="Comic Sans MS Bold" size="18.0" />
-         </font>
-      </Button>
-      <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #546a75;" text="Definições" textAlignment="CENTER" textFill="WHITE" VBox.vgrow="SOMETIMES">
-         <font>
-            <Font name="Comic Sans MS Bold" size="14.0" />
-         </font>
-      </Button>
+      <HBox alignment="CENTER_RIGHT" VBox.vgrow="SOMETIMES">
+         <children>
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #ACB0F2;" text="Perfis" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="SOMETIMES">
+               <font>
+                  <Font name="Georgia Bold" size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="SOMETIMES">
+         <children>
+            <Label alignment="TOP_CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="WORDLE IHC" textAlignment="CENTER" textFill="#231773" VBox.vgrow="SOMETIMES">
+               <font>
+                  <Font name="Droid Sans Bold" size="48.0" />
+               </font>
+            </Label>
+            <Separator prefWidth="200.0" style="-fx-background-color: #1c125c;" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" VBox.vgrow="SOMETIMES">
+               <children>
+                  <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #ACB0F2;" text="Jogar" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="SOMETIMES">
+                     <font>
+                        <Font name="Georgia Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <SplitMenuButton alignment="CENTER" mnemonicParsing="false" text="Dificuldade" textAlignment="CENTER">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="1" />
+                      <MenuItem mnemonicParsing="false" text="2" />
+                    </items>
+                  </SplitMenuButton>
+               </children>
+            </HBox>
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #ACB0F2;" text="Definições" textAlignment="CENTER" textFill="WHITE" VBox.vgrow="SOMETIMES">
+               <font>
+                  <Font name="Georgia Bold" size="14.0" />
+               </font>
+            </Button>
+         </children>
+         <VBox.margin>
+            <Insets left="100.0" right="100.0" />
+         </VBox.margin>
+      </VBox>
    </children>
    <padding>
-      <Insets bottom="20.0" left="120.0" right="120.0" top="20.0" />
+      <Insets bottom="10.0" left="10.0" right="10.0" />
    </padding>
 </VBox>
