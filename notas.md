@@ -37,3 +37,10 @@
 # Recursos
 
 - https://github.com/iAmGio/animated
+
+# Interfaces
+
+## Menu Inicial
+
+**start-view (StartController)**
+
