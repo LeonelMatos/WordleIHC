@@ -15,59 +15,32 @@ import java.util.Random;
 
 public class StartController {
 
-    @FXML private Button start;
+    @FXML private Button bntPlay;
+    @FXML private Button bntSetting;
+    @FXML private Button bntProfile;
 
-    @FXML protected void handlePlayButton() {
-        Random r = new Random();
-        Rectangle2D screenBounds = Screen.getPrimary().getBounds();
-        int width = (int) screenBounds.getWidth();
-        int height = (int) screenBounds.getHeight();
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("game-view.fxml"));
-            Parent root = fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.initStyle(StageStyle.DECORATED);
-            stage.setTitle("Wordle Game");
-            stage.setScene(new Scene(root));
-            stage.setX(r.nextInt(width - (int) stage.getWidth()));
-            stage.setY(r.nextInt(height - (int) stage.getHeight()));
-            stage.show();
-        } catch (IOException ignored) {}
+    @FXML
+    void handlePlayButton() throws IOException {
+        Stage currentStage = (Stage) bntPlay.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("game-view.fxml"));
+        Scene newScene = new Scene(fxmlLoader.load(), currentStage.getWidth(), currentStage.getHeight());
+        currentStage.setTitle("Wordle Game");
+        currentStage.setScene(newScene);
     }
 
-    @FXML protected void handleSettingsButton() {
-        Random r = new Random();
-        Rectangle2D screenBounds = Screen.getPrimary().getBounds();
-        int width = (int) screenBounds.getWidth();
-        int height = (int) screenBounds.getHeight();
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("settings-view.fxml"));
-            Parent root = fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.initStyle(StageStyle.DECORATED);
-            stage.setTitle("Wordle Settings");
-            stage.setScene(new Scene(root));
-            stage.setX(r.nextInt(width - (int) stage.getWidth()));
-            stage.setY(r.nextInt(height - (int) stage.getHeight()));
-            stage.show();
-        } catch (IOException ignored) {}
+    @FXML protected void handleSettingsButton() throws IOException {
+        Stage currentStage = (Stage) bntPlay.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("settings-view.fxml"));
+        Scene newScene = new Scene(fxmlLoader.load(), currentStage.getWidth(), currentStage.getHeight());
+        currentStage.setTitle("Wordle Settings");
+        currentStage.setScene(newScene);
     }
 
-    @FXML protected void handleProfileButton() {
-        Random r = new Random();
-        Rectangle2D screenBounds = Screen.getPrimary().getBounds();
-        int width = (int) screenBounds.getWidth();
-        int height = (int) screenBounds.getHeight();
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("profile-view.fxml"));
-            Parent root = fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.initStyle(StageStyle.DECORATED);
-            stage.setTitle("Wordle Profile");
-            stage.setScene(new Scene(root));
-            stage.setX(r.nextInt(width - (int) stage.getWidth()));
-            stage.setY(r.nextInt(height - (int) stage.getHeight()));
-            stage.show();
-        } catch (IOException ignored) {}
+    @FXML protected void handleProfileButton() throws IOException {
+        Stage currentStage = (Stage) bntPlay.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("profile-view.fxml"));
+        Scene newScene = new Scene(fxmlLoader.load(), currentStage.getWidth(), currentStage.getHeight());
+        currentStage.setTitle("Wordle Profile");
+        currentStage.setScene(newScene);
     }
 }

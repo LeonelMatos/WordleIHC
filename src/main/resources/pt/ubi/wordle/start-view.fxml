@@ -14,7 +14,7 @@
    <children>
       <HBox alignment="CENTER_RIGHT" VBox.vgrow="SOMETIMES">
          <children>
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleProfileButton" style="-fx-background-color: #ACB0F2;" text="Perfis" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="SOMETIMES">
+            <Button fx:id="bntProfile" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleProfileButton" style="-fx-background-color: #ACB0F2;" text="Perfis" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="SOMETIMES">
                <font>
                   <Font name="Georgia Bold" size="18.0" />
                </font>
@@ -31,23 +31,23 @@
             <Separator prefWidth="200.0" style="-fx-background-color: #1c125c;" />
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" VBox.vgrow="SOMETIMES">
                <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handlePlayButton" style="-fx-background-color: #ACB0F2;" text="Jogar" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="SOMETIMES">
+                  <Button fx:id="bntPlay" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handlePlayButton" style="-fx-background-color: #ACB0F2;" text="Jogar" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="SOMETIMES">
                      <font>
                         <Font name="Georgia Bold" size="18.0" />
                      </font>
                   </Button>
                   <SplitMenuButton alignment="CENTER" mnemonicParsing="false" text="Dificuldade" textAlignment="CENTER">
-                    <items>
-                      <MenuItem mnemonicParsing="false" text="1" />
-                      <MenuItem mnemonicParsing="false" text="2" />
-                    </items>
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="1" />
+                        <MenuItem mnemonicParsing="false" text="2" />
+                     </items>
                      <font>
                         <Font name="Georgia" size="14.0" />
                      </font>
                   </SplitMenuButton>
                </children>
             </HBox>
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleSettingsButton" style="-fx-background-color: #ACB0F2;" text="Definições" textAlignment="CENTER" textFill="WHITE" VBox.vgrow="SOMETIMES">
+            <Button fx:id="bntSetting" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleSettingsButton" style="-fx-background-color: #ACB0F2;" text="Definições" textAlignment="CENTER" textFill="WHITE" VBox.vgrow="SOMETIMES">
                <font>
                   <Font name="Georgia Bold" size="14.0" />
                </font>
@@ -62,3 +62,4 @@
       <Insets bottom="10.0" left="10.0" right="10.0" />
    </padding>
 </VBox>
+

@@ -76,7 +76,13 @@ de dificuldade)._
 **game-view (GameController)**
 
 ````
-
+Jogo:
+(SAIR)        (DEFINIÇÕES)
+    |-|-|-|-|
+    |-|-|-|-|
+    |-|-|-|-|
+    
+     (CHECK)
 ````
 
 **settings-view (SettingsController)**
