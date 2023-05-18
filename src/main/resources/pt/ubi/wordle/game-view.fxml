@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" spacing="20.0" style="-fx-background-color: #DDDDDD;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ubi.wordle.GameController">
+<VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" spacing="20.0" style="-fx-background-color: #DDDDDD;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ubi.wordle.GameController">
   <padding>
-    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    <Insets bottom="20.0" left="20.0" right="20.0" />
   </padding>
    <children>
-      <BorderPane>
+      <BorderPane VBox.vgrow="SOMETIMES">
          <left>
-            <Button contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: ff6962;" text="Sair" textFill="WHITE" BorderPane.alignment="CENTER">
+            <Button fx:id="bntExit" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleExitButton" style="-fx-background-color: ff6962;" text="Sair" textFill="WHITE" BorderPane.alignment="CENTER">
                <font>
                   <Font name="Georgia Bold" size="14.0" />
                </font>
@@ -26,12 +28,12 @@
             </Button>
          </right>
       </BorderPane>
-      <VBox alignment="CENTER" spacing="10.0" style="-fx-background-color: #CCCCCC;" VBox.vgrow="SOMETIMES">
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #CCCCCC;" VBox.vgrow="SOMETIMES">
          <children>
-            <HBox fx:id="gameBox" alignment="CENTER" prefHeight="100.0" spacing="10.0" style="-fx-background-color: #BBBBBB;" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #BBBBBB;" />
          </children>
       </VBox>
-      <Button contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #ACB0F2;" text="Verificar" textAlignment="CENTER" textFill="WHITE">
+      <Button contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #ACB0F2;" text="Verificar" textFill="WHITE">
          <font>
             <Font name="Georgia Bold" size="18.0" />
          </font></Button>

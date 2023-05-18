@@ -1,16 +1,18 @@
 package pt.ubi.wordle;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.RowConstraints;
+import javafx.stage.Stage;
 
-import java.util.Random;
+import java.io.IOException;
 
 public class GameController {
+
+    @FXML private Button bntExit;
 
     int difficulty = 4;
 
@@ -21,8 +23,6 @@ public class GameController {
 
     @FXML
     void initialize () {
-
-
         for (int i = 0; i < difficulty; i++) {
             TextField textField = new TextField();
             textField.setId(String.valueOf(i));
@@ -32,11 +32,16 @@ public class GameController {
                     " -fx-alignment: center;" +
                     " -fx-pref-width: 60px;" +
                     " -fx-pref-height: 60px;");
-
             gameBox.getChildren().add(textField);
         }
     }
 
-
-
+    @FXML
+    void handleExitButton() throws IOException {
+        Stage currentStage = (Stage) bntExit.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("start-view.fxml"));
+        Scene newScene = new Scene(fxmlLoader.load());
+        currentStage.setTitle("Wordle Settings");
+        currentStage.setScene(newScene);
+    }
 }
