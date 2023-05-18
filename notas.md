@@ -13,8 +13,8 @@
 
 ## Perfis
 
-- [ ] Criar perfis
-
+- [ ] Criar perfis com password
+- [ ] Encriptar passwords dos perfis
 - [ ] Editar perfis
 
 ## Leaderboard
@@ -33,10 +33,21 @@
 **Bibliotecas de palavras:**
 - Collins Scrabble Words?
 - CSW19
+- [WordleCompetition Github (Inglês) -> 5 letters only](https://github.com/Kinkelin/WordleCompetition/tree/main/data/official)
+- [Wiktionary](https://en.wiktionary.org/wiki/Wiktionary:Main_Page)
+
+**Wordlists:**
+
+- Ficheiro (txt ou json):
+  - Wordlist com palavras (necessário separar pelos diferentes níveis e idiomas)
+  - Necessário encriptar cada palavra da wordlist
+- [Dicionário em Java](https://docs.oracle.com/javase/8/docs/api/java/util/Dictionary.html):
+  - Palavras são carregadas com a aplicação
+  - Não é necessário encriptar
 
 # Recursos
 
-- https://github.com/iAmGio/animated
+- [Animações JavaFX](https://github.com/iAmGio/animated)
 
 # Interfaces
 
@@ -55,6 +66,24 @@ Menu inicial:
   (DEFINIÇÕES)
   
      (SAIR)
+
+````
+
+**game-view (GameController)**
+
+````
+
+````
+
+**settings-view (SettingsController)**
+
+````
+
+````
+
+**profile-view (ProfileController)**
+
+````
 
 ````
 
