@@ -9,10 +9,10 @@
 
 <VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" spacing="20.0" style="-fx-background-color: #DDDDDD;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ubi.wordle.GameController">
   <padding>
-    <Insets bottom="20.0" left="20.0" right="20.0" />
+    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
   </padding>
    <children>
-      <BorderPane VBox.vgrow="SOMETIMES">
+      <BorderPane>
          <left>
             <Button fx:id="bntExit" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleExitButton" style="-fx-background-color: ff6962;" text="Sair" textFill="WHITE" BorderPane.alignment="CENTER">
                <font>
@@ -30,7 +30,7 @@
       </BorderPane>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #CCCCCC;" VBox.vgrow="SOMETIMES">
          <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #BBBBBB;" />
+            <HBox fx:id="gameBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" style="-fx-background-color: #BBBBBB;" />
          </children>
       </VBox>
       <Button contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #ACB0F2;" text="Verificar" textFill="WHITE">
