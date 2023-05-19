@@ -1,5 +1,6 @@
 package pt.ubi.wordle;
 
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -7,12 +8,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.security.Key;
 import java.security.KeyException;
 
 public class GameController {
@@ -23,13 +27,14 @@ public class GameController {
 
     @FXML private VBox gameBox;
 
-    int difficulty = 4;
+    int difficulty = 5;
 
     int attempts = 0;
 
     String word = "java";
 
     String entry = "";
+
 
     @FXML
     void initialize () {
@@ -53,6 +58,7 @@ public class GameController {
                     " -fx-pref-width: 50px;" +
                     " -fx-pref-height: 50px;");
             textField.setOnKeyTyped(this::textInputHandler);
+            textField.setOnKeyPressed(event -> selectedTextField(event, gBox));
             gBox.getChildren().add(textField);
 
         }
@@ -86,11 +92,6 @@ public class GameController {
         });
 
 
-        if (inputFocused < difficulty) {
-
-            gBox.getChildren().get(inputFocused).requestFocus();
-            inputFocused++;
-        }
         if (isAllTextFieldsFilled(gBox) && attempts <= difficulty) {
             //falta verifica se a palavra existe
             for (int i = 0; i < difficulty; i++) {
@@ -103,8 +104,35 @@ public class GameController {
 
             //if (attempt.equals(word)) {
                 instantiate_gBox();
+                clear_gBox(gBox);
             //}
         }
+    }
+
+    void selectedTextField(KeyEvent event, HBox gbox) {
+        //get current textfield
+        //get current id
+        //focus on id-1
+        if (event.getCode() == KeyCode.BACK_SPACE) {
+            TextField currentText = (TextField) event.getSource();
+            currentText.clear();
+            int currentId = Integer.parseInt(currentText.getId()) - 1;
+            if (currentId == -1) return; //Não é necessário voltar no primeiro
+            TextField newText = (TextField) gbox.getChildren().get(currentId);
+            newText.requestFocus();
+            newText.positionCaret(newText.getText().length());
+        }
+        else if (event.getCode().isLetterKey()) {
+            TextField currentText = (TextField) event.getSource();
+            int currentId = Integer.parseInt(currentText.getId()) + 1;
+            HBox gBox = (HBox) currentText.getParent();
+            int size = gBox.getChildren().size();
+            if (currentId == size) return; //Não é necessário ir ao próximo
+            TextField newText = (TextField) gbox.getChildren().get(currentId);
+            newText.requestFocus();
+            newText.positionCaret(newText.getText().length());
+        }
+
     }
 
     void instantiate_gBox() {
@@ -115,7 +143,8 @@ public class GameController {
         gBox.setStyle("-fx-background-color: #BBBBBB");
         gBox.setAlignment(Pos.CENTER);
         gBox.setSpacing(10);
-        gameBox.getChildren().add(0, gBox);
+        int index = gameBox.getChildren().size() - 1;
+        gameBox.getChildren().add(index, gBox);
 
         //Instanciar os labels
         for (int i = 0; i < difficulty; i++) {
@@ -141,5 +170,14 @@ public class GameController {
                 return false;
         }
         return true;
+    }
+
+    void clear_gBox (HBox gBox) {
+        for (int i = 0; i < difficulty; i++) {
+            TextField currentField = (TextField) gBox.getChildren().get(i);
+            currentField.clear();
+        }
+        gBox.getChildren().get(0).requestFocus();
+        inputFocused = 1;
     }
 }
