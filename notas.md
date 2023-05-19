@@ -82,8 +82,9 @@ Jogo:
     |-|-|-|-|
     |-|-|-|-|
     
-     (CHECK)
+     (CHECK)*1
 ````
+_*1: O check é feito automáticamente após completar a palavra_
 
 **settings-view (SettingsController)**
 

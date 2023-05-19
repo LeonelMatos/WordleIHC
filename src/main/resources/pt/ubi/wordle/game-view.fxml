@@ -28,14 +28,10 @@
             </Button>
          </right>
       </BorderPane>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #CCCCCC;" VBox.vgrow="SOMETIMES">
+      <VBox fx:id="gameBox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #CCCCCC;" VBox.vgrow="SOMETIMES">
          <children>
-            <HBox fx:id="gameBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" style="-fx-background-color: #BBBBBB;" />
+            <HBox alignment="CENTER" disable="true" prefHeight="80.0" prefWidth="200.0" spacing="10.0" style="-fx-background-color: #BBBBBB;" visible="false" />
          </children>
       </VBox>
-      <Button contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #ACB0F2;" text="Verificar" textFill="WHITE">
-         <font>
-            <Font name="Georgia Bold" size="18.0" />
-         </font></Button>
    </children>
 </VBox>
