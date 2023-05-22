@@ -57,8 +57,8 @@ public class GameController {
                     " -fx-alignment: center;" +
                     " -fx-pref-width: 55px;" +
                     " -fx-pref-height: 55px;");
-            textField.setOnKeyTyped(this::textInputHandler);
-            textField.setOnKeyPressed(event -> selectedTextField(event, gBox));
+            textField.setOnKeyPressed(this::textInputHandler);
+            //textField.setOnKeyPressed(event -> selectedTextField(event, gBox));
             gBox.getChildren().add(textField);
 
         }
@@ -92,6 +92,24 @@ public class GameController {
         });
 
 
+        if (event.getCode() == KeyCode.BACK_SPACE) {
+            System.out.println("[INPUT] clicaste num BACK_SPACE");
+            textField.clear();  //Backspace limpa text field
+            int currentId = Integer.parseInt(textField.getId());
+            System.out.println("[TEXTFIELD] Estou no field " + currentId);
+            if (currentId == 0) return;
+            TextField gotoText = (TextField) gBox.getChildren().get(currentId-1);
+            gotoText.requestFocus();
+        }/*
+        else if (event.getCode().isLetterKey()) {
+            System.out.println("[INPUT] clicaste numa letra");
+            int currentId = Integer.parseInt(textField.getId());
+            System.out.println("[TEXTFIELD] Estou no field " + currentId);
+            if (currentId == difficulty -1) return;
+            TextField gotoText = (TextField) gBox.getChildren().get(currentId+1);
+            gotoText.requestFocus();
+        }*/
+
         if (isAllTextFieldsFilled(gBox) && attempts <= difficulty) {
             //falta verifica se a palavra existe
             for (int i = 0; i < difficulty; i++) {
@@ -103,8 +121,8 @@ public class GameController {
             System.out.println(entry);
 
             //if (attempt.equals(word)) {
-                instantiate_gBox();
-                clear_gBox(gBox);
+            instantiate_gBox();
+            clear_gBox(gBox);
             //}
         }
     }
@@ -113,7 +131,7 @@ public class GameController {
         //get current textfield
         //get current id
         //focus on id+-1
-        if (event.getCode() == KeyCode.BACK_SPACE) {
+        /*if (event.getCode() == KeyCode.BACK_SPACE) {
             TextField currentText = (TextField) event.getSource();
             currentText.clear();
             int currentId = Integer.parseInt(currentText.getId());
@@ -128,8 +146,8 @@ public class GameController {
             if (currentId == difficulty-1) return; //Impossível ir depois do último
             TextField gotoText = (TextField) gbox.getChildren().get(currentId+1);
             gotoText.requestFocus();
-            gotoText.positionCaret(gotoText.getText().length());
-        }
+
+        }*/
 
     }
 
