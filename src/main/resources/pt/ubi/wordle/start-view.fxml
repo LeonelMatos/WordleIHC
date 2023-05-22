@@ -34,7 +34,7 @@
                <children>
                   <Button fx:id="bntPlay" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handlePlayButton" style="-fx-background-color: #ACB0F2;" text="Jogar" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="SOMETIMES">
                      <font>
-                        <Font name="Georgia Bold" size="18.0" />
+                        <Font name="Georgia Bold" size="24.0" />
                      </font>
                   </Button>
                   <SplitMenuButton alignment="CENTER" mnemonicParsing="false" text="Dificuldade" textAlignment="CENTER">
@@ -50,12 +50,12 @@
             </HBox>
             <Button fx:id="bntSetting" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleSettingsButton" style="-fx-background-color: #ACB0F2;" text="Definições" textAlignment="CENTER" textFill="WHITE" VBox.vgrow="SOMETIMES">
                <font>
-                  <Font name="Georgia Bold" size="14.0" />
+                  <Font name="Georgia Bold" size="18.0" />
                </font>
             </Button>
             <Button fx:id="bntSetting1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleSettingsButton" style="-fx-background-color: ff6962;" text="Sair" textAlignment="CENTER" textFill="WHITE">
                <font>
-                  <Font name="Georgia Bold" size="14.0" />
+                  <Font name="Georgia Bold" size="18.0" />
                </font>
             </Button>
          </children>
