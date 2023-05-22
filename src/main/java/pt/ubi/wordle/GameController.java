@@ -55,8 +55,8 @@ public class GameController {
                     " -fx-font-family: Georgia;" +
                     " -fx-font-size: 25px;" +
                     " -fx-alignment: center;" +
-                    " -fx-pref-width: 50px;" +
-                    " -fx-pref-height: 50px;");
+                    " -fx-pref-width: 55px;" +
+                    " -fx-pref-height: 55px;");
             textField.setOnKeyTyped(this::textInputHandler);
             textField.setOnKeyPressed(event -> selectedTextField(event, gBox));
             gBox.getChildren().add(textField);
@@ -112,25 +112,23 @@ public class GameController {
     void selectedTextField(KeyEvent event, HBox gbox) {
         //get current textfield
         //get current id
-        //focus on id-1
+        //focus on id+-1
         if (event.getCode() == KeyCode.BACK_SPACE) {
             TextField currentText = (TextField) event.getSource();
             currentText.clear();
-            int currentId = Integer.parseInt(currentText.getId()) - 1;
-            if (currentId == -1) return; //Não é necessário voltar no primeiro
-            TextField newText = (TextField) gbox.getChildren().get(currentId);
-            newText.requestFocus();
-            newText.positionCaret(newText.getText().length());
+            int currentId = Integer.parseInt(currentText.getId());
+            if (currentId == 0) return; //Impossível ir ao anterior ao primeiro
+            TextField gotoText = (TextField) gbox.getChildren().get(currentId-1);
+            gotoText.requestFocus();
+            gotoText.positionCaret(gotoText.getText().length());
         }
         else if (event.getCode().isLetterKey()) {
             TextField currentText = (TextField) event.getSource();
-            int currentId = Integer.parseInt(currentText.getId()) + 1;
-            HBox gBox = (HBox) currentText.getParent();
-            int size = gBox.getChildren().size();
-            if (currentId == size) return; //Não é necessário ir ao próximo
-            TextField newText = (TextField) gbox.getChildren().get(currentId);
-            newText.requestFocus();
-            newText.positionCaret(newText.getText().length());
+            int currentId = Integer.parseInt(currentText.getId());
+            if (currentId == difficulty-1) return; //Impossível ir depois do último
+            TextField gotoText = (TextField) gbox.getChildren().get(currentId+1);
+            gotoText.requestFocus();
+            gotoText.positionCaret(gotoText.getText().length());
         }
 
     }
