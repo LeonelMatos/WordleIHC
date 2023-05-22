@@ -28,7 +28,7 @@
             </Label>
          </center>
       </BorderPane>
-      <VBox fx:id="profileHolder" alignment="CENTER" style="-fx-background-color: #EEEEEE;" VBox.vgrow="SOMETIMES" />
+      <VBox fx:id="profileHolder" alignment="CENTER" spacing="20.0" style="-fx-background-color: #EEEEEE;" VBox.vgrow="SOMETIMES" />
        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#instantiateProfileBox" style="-fx-background-color: #ACB0F2;" text="Novo" textAlignment="CENTER" textFill="WHITE" VBox.vgrow="SOMETIMES">
            <font>
                <Font name="Georgia Bold" size="18.0" />
