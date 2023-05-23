@@ -31,6 +31,10 @@
 
 - [ ] Encontrar biblioteca de encriptação
 
+## Idiomas
+
+- [ ] Menu no start-view
+
 # Notas
 
 **Bibliotecas de palavras:**
@@ -77,11 +81,13 @@ abre o menu de perfis._
 _*2: Dropdown da dificuldade do jogo (de 3 a 7 letras, ou seja, 5 níveis
 de dificuldade)._
 
+## Jogo
+
 **game-view (GameController)**
 
 ````
 Jogo:
-(SAIR)        (DEFINIÇÕES)
+(SAIR)        (IDIOMA)
     |-|-|-|-|
     |-|-|-|-|
     |-|-|-|-|
@@ -90,11 +96,18 @@ Jogo:
 ````
 _*1: O check é feito automáticamente após completar a palavra_
 
+```
+______________
+(X) Idioma
+    
+   PT EN FR
+______________
+
+```
+
+## Definições
+
 **settings-view (SettingsController)**
-
-````
-
-````
 
 **profile-view (ProfileController)**
 
