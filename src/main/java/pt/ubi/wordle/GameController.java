@@ -74,6 +74,8 @@ public class GameController {
         currentStage.setScene(newScene);
     }
 
+
+    HBox inputBox;
     // Move o cursor para a próxima letra no input
     // Guarda o input dado
     // Verifica tentativas
@@ -82,8 +84,10 @@ public class GameController {
         entry = "";
         TextField textField = (TextField) event.getSource();
         HBox gBox = (HBox) textField.getParent();
+        inputBox = gBox;
 
-        textField.textProperty().setValue(textField.getText().toUpperCase());
+        //textField.textProperty().setValue(textField.getText().toUpperCase());
+        textField.setText(textField.getText().toUpperCase());
         //Impede de escrever mais do que 1 char
         textField.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.length() > 1) {
@@ -91,67 +95,49 @@ public class GameController {
             }
         });
 
-
         if (event.getCode() == KeyCode.BACK_SPACE) {
-            System.out.println("[INPUT] clicaste num BACK_SPACE");
             textField.clear();  //Backspace limpa text field
             int currentId = Integer.parseInt(textField.getId());
-            System.out.println("[TEXTFIELD] Estou no field " + currentId);
             if (currentId == 0) return;
             TextField gotoText = (TextField) gBox.getChildren().get(currentId-1);
             gotoText.requestFocus();
-        }/*
-        else if (event.getCode().isLetterKey()) {
-            System.out.println("[INPUT] clicaste numa letra");
+        }
+        else if (!textField.getText().isEmpty()) {
             int currentId = Integer.parseInt(textField.getId());
-            System.out.println("[TEXTFIELD] Estou no field " + currentId);
             if (currentId == difficulty -1) return;
             TextField gotoText = (TextField) gBox.getChildren().get(currentId+1);
-            gotoText.requestFocus();
-        }*/
+            focusText(gotoText);
 
+        }
+
+        System.out.println(isAllTextFieldsFilled(gBox));
         if (isAllTextFieldsFilled(gBox) && attempts <= difficulty) {
-            //falta verifica se a palavra existe
-            for (int i = 0; i < difficulty; i++) {
-                TextField currentField = (TextField) gBox.getChildren().get(i);
-                String input = currentField.getText();
-                System.out.println(input);
-                entry = entry + input;
-            }
-            System.out.println(entry);
-
-            //if (attempt.equals(word)) {
-            instantiate_gBox();
-            clear_gBox(gBox);
-            //}
+            submitWord();
         }
     }
 
-    void selectedTextField(KeyEvent event, HBox gbox) {
-        //get current textfield
-        //get current id
-        //focus on id+-1
-        /*if (event.getCode() == KeyCode.BACK_SPACE) {
-            TextField currentText = (TextField) event.getSource();
-            currentText.clear();
-            int currentId = Integer.parseInt(currentText.getId());
-            if (currentId == 0) return; //Impossível ir ao anterior ao primeiro
-            TextField gotoText = (TextField) gbox.getChildren().get(currentId-1);
-            gotoText.requestFocus();
-            gotoText.positionCaret(gotoText.getText().length());
+    @FXML
+    void submitWord() {
+        //falta verifica se a palavra existe
+        for (int i = 0; i < difficulty; i++) {
+            TextField currentField = (TextField) inputBox.getChildren().get(i);
+            String input = currentField.getText();
+            System.out.println(input);
+            entry = entry + input;
         }
-        else if (event.getCode().isLetterKey()) {
-            TextField currentText = (TextField) event.getSource();
-            int currentId = Integer.parseInt(currentText.getId());
-            if (currentId == difficulty-1) return; //Impossível ir depois do último
-            TextField gotoText = (TextField) gbox.getChildren().get(currentId+1);
-            gotoText.requestFocus();
+        System.out.println(entry);
 
-        }*/
-
+        //if (attempt.equals(word)) {
+        instantiateInputBox();
+        clearInputBox();
+        //}
     }
 
-    void instantiate_gBox() {
+    void focusText(TextField gotoText) {
+        gotoText.requestFocus();
+    }
+
+    void instantiateInputBox() {
         //Instanciar o gamebox
         HBox gBox = new HBox();
         gBox.setPrefHeight(80);
@@ -188,12 +174,12 @@ public class GameController {
         return true;
     }
 
-    void clear_gBox (HBox gBox) {
+    void clearInputBox () {
         for (int i = 0; i < difficulty; i++) {
-            TextField currentField = (TextField) gBox.getChildren().get(i);
+            TextField currentField = (TextField) inputBox.getChildren().get(i);
             currentField.clear();
         }
-        gBox.getChildren().get(0).requestFocus();
+        inputBox.getChildren().get(0).requestFocus();
         inputFocused = 1;
     }
 }

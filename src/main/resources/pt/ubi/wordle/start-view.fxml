@@ -6,6 +6,8 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -21,6 +23,13 @@
                </font>
             </Button>
          </right>
+         <left>
+            <ImageView fitHeight="40.0" fitWidth="200.0" onMouseClicked="#handleSettingsButton" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+               <image>
+                  <Image url="@flags/language.png" />
+               </image>
+            </ImageView>
+         </left>
       </BorderPane>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="50.0" VBox.vgrow="SOMETIMES">
          <children>
@@ -48,11 +57,6 @@
                   </SplitMenuButton>
                </children>
             </HBox>
-            <Button fx:id="bntSetting" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleSettingsButton" style="-fx-background-color: #ACB0F2;" text="Definições" textAlignment="CENTER" textFill="WHITE" VBox.vgrow="SOMETIMES">
-               <font>
-                  <Font name="Georgia Bold" size="18.0" />
-               </font>
-            </Button>
             <Button fx:id="bntSetting1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleSettingsButton" style="-fx-background-color: ff6962;" text="Sair" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Georgia Bold" size="18.0" />

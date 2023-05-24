@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -11,7 +13,6 @@ import java.io.IOException;
 public class StartController {
 
     @FXML private Button bntPlay;
-    @FXML private Button bntSetting;
     @FXML private Button bntProfile;
 
     @FXML
@@ -24,7 +25,7 @@ public class StartController {
     }
 
     @FXML protected void handleSettingsButton() throws IOException {
-        Stage currentStage = (Stage) bntSetting.getScene().getWindow();
+        Stage currentStage = (Stage) bntPlay.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("settings-view.fxml"));
         Scene newScene = new Scene(fxmlLoader.load());
         currentStage.setTitle("Wordle Settings");

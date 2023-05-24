@@ -13,20 +13,25 @@
    <children>
       <BorderPane>
          <left>
-            <Button fx:id="bntExit" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleExitButton" style="-fx-background-color: ff6962;" text="Sair" textFill="WHITE" BorderPane.alignment="CENTER">
+            <Button fx:id="bntExit" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleExitButton" style="-fx-background-color: ff6962;" text="Voltar" textFill="WHITE" BorderPane.alignment="CENTER">
                <font>
-                  <Font name="Georgia Bold" size="14.0" />
+                  <Font name="Georgia Bold" size="18.0" />
                </font>
             </Button>
          </left>
          <right>
             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #ACB0F2;" text="Perfil" textAlignment="CENTER" textFill="WHITE" BorderPane.alignment="CENTER">
                <font>
-                  <Font name="Georgia Bold" size="14.0" />
+                  <Font name="Georgia Bold" size="18.0" />
                </font>
             </Button>
          </right>
       </BorderPane>
       <VBox fx:id="gameBox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: #CCCCCC;" VBox.vgrow="SOMETIMES" />
+      <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#submitWord" style="-fx-background-color: #ACB0F2;" text="Submeter" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Georgia Bold" size="18.0" />
+         </font>
+      </Button>
    </children>
 </VBox>
