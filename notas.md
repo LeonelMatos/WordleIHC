@@ -5,14 +5,16 @@
 ### Github
 
 - [x] Criar repositório
+- [ ] Lançar app na Microsoft Store
 
 ## Interface
 
-- [ ] Resisable
+- [x] Resisable
 - [x] Multiple views solução
 
 ## Perfis
 
+- [x] Criar menu perfis
 - [ ] Criar perfis com password
 - [ ] Encriptar passwords dos perfis
 - [ ] Editar perfis
@@ -24,8 +26,8 @@
 
 ## GamePlay
 
-- [ ] Trocar idioma (francês, inglês, português)
-- [ ] Níveis de dificuldade (3->7)
+- [x] Trocar idioma (francês, inglês, português)
+- [x] Níveis de dificuldade (3->7)
 
 ## Encriptação
 
@@ -33,7 +35,13 @@
 
 ## Idiomas
 
-- [ ] Menu no start-view
+- [x] Menu no start-view (passado para settings-view)
+
+## Salvar dados
+
+- [ ] Ler/escrever a dificuldade
+- [ ] Ler/escrever a linguagem
+- [ ] Ler/escrever perfis, pontuação
 
 # Notas
 
