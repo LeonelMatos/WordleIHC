@@ -12,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.*;
+import java.util.ArrayList;
 
 public class StartController {
 
@@ -84,17 +85,31 @@ public class StartController {
 
     void writeDifficulty() throws IOException {
         try {
-            ObjectInputStream readStream = new ObjectInputStream(new FileInputStream(filename));
-            ObjectOutputStream writeStream = new ObjectOutputStream(new FileOutputStream(filename));
+            File file = new File(filename);
 
-            char[] fileText = (char[]) readStream.readObject();
+            FileReader readStream = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(readStream);
 
-            fileText[4] = difficulty;
+            ArrayList<char[]> fileBuffer = new ArrayList<>();
+            String line;
 
-            writeStream.writeObject(String.valueOf(fileText));
-            writeStream.flush();
+            while ((line = bufferedReader.readLine()) != null) {
+                fileBuffer.add(line.toCharArray());
+            }
+
+            char[] value = {difficulty};
+            fileBuffer.set(1, value);
+            readStream.close();
+
+            FileWriter writeStream = new FileWriter(file);
+
+            for (char[] chars : fileBuffer) {
+                writeStream.write(String.valueOf(chars));
+                writeStream.write("\n");
+            }
+            writeStream.close();
         }
-        catch (IOException | ClassNotFoundException e) {
+        catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }
