@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="500.0" spacing="20.0" style="-fx-background-color: #DDDDDD;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ubi.wordle.SettingsController">
+<VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="500.0" spacing="20.0" style="-fx-background-color: #DDDDDD;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ubi.wordle.SettingsController">
   <padding>
     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
   </padding>
@@ -34,13 +30,12 @@
       <HBox prefHeight="50.0" prefWidth="200.0" />
       <VBox alignment="CENTER" spacing="30.0">
          <children>
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+            <HBox fx:id="PT" alignment="CENTER_LEFT" onMouseClicked="#selectLanguage" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                <children>
                   <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@flags/portugal.png" />
-                     </image>
-                  </ImageView>
+                     </image></ImageView>
                   <Label alignment="CENTER" contentDisplay="CENTER" text="Português " textAlignment="CENTER">
                      <font>
                         <Font name="Georgia Bold" size="18.0" />
@@ -48,13 +43,12 @@
                   </Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+            <HBox fx:id="EN" alignment="CENTER_LEFT" onMouseClicked="#selectLanguage" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                <children>
                   <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@flags/united-kingdom.png" />
-                     </image>
-                  </ImageView>
+                     </image></ImageView>
                   <Label alignment="CENTER" contentDisplay="CENTER" text="English   ">
                      <font>
                         <Font name="Georgia Bold" size="18.0" />
@@ -62,13 +56,12 @@
                   </Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+            <HBox fx:id="FR" alignment="CENTER_LEFT" onMouseClicked="#selectLanguage" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                <children>
                   <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@flags/france.png" />
-                     </image>
-                  </ImageView>
+                     </image></ImageView>
                   <Label alignment="CENTER" contentDisplay="CENTER" text="Français  ">
                      <font>
                         <Font name="Georgia Bold" size="18.0" />

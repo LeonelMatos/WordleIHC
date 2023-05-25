@@ -1,6 +1,5 @@
 package pt.ubi.wordle;
 
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -8,18 +7,23 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
-import java.security.Key;
-import java.security.KeyException;
+import java.util.ArrayList;
 
 public class GameController {
+
+    String filename = "settings.txt";
 
     int inputFocused = 1;
 
@@ -28,6 +32,8 @@ public class GameController {
     @FXML private VBox gameBox;
 
     int difficulty = 5;
+    String language = "pt";
+    @FXML ImageView currentLanguage;
 
     int attempts = 0;
 
@@ -38,6 +44,16 @@ public class GameController {
 
     @FXML
     void initialize () {
+        //Inicializar atributos
+        difficulty = readDifficulty();
+        language = readLanguage();
+        switch (language) {
+            case "pt" -> System.out.println("Portugal");//currentLanguage.setImage(new Image("flags/portugal.png"));
+            case "en" -> System.out.println("English");//currentLanguage.setImage(new Image("flags/united-kingdom.png"));
+            case "fr" -> currentLanguage.setImage(new Image("flags/france.png"));
+            default -> System.out.println("Image not found");
+        }
+
         //Instanciar o gamebox
         HBox gBox = new HBox();
         gBox.setPrefHeight(80);
@@ -56,7 +72,8 @@ public class GameController {
                     " -fx-font-size: 25px;" +
                     " -fx-alignment: center;" +
                     " -fx-pref-width: 55px;" +
-                    " -fx-pref-height: 55px;");
+                    " -fx-pref-height: 55px;" +
+                    " -fx-font-weight: bold");
             textField.setOnKeyPressed(this::textInputHandler);
             //textField.setOnKeyPressed(event -> selectedTextField(event, gBox));
             gBox.getChildren().add(textField);
@@ -182,4 +199,54 @@ public class GameController {
         inputBox.getChildren().get(0).requestFocus();
         inputFocused = 1;
     }
+
+    int readDifficulty() {
+        int value = 7;
+        try {
+            File file = new File(filename);
+
+            FileReader readStream = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(readStream);
+
+            ArrayList<char[]> fileBuffer = new ArrayList<>();
+            String line;
+
+            while ((line = bufferedReader.readLine()) != null) {
+                fileBuffer.add(line.toCharArray());
+            }
+            bufferedReader.close();
+            readStream.close();
+            value = Integer.parseInt(String.valueOf(fileBuffer.get(1)[0]));
+        }
+        catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        return value; //Integer.parseInt(String.valueOf(value));
+    }
+
+    String readLanguage() {
+        char[] language = {};
+        try {
+            File file = new File(filename);
+
+            FileReader readStream = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(readStream);
+
+            ArrayList<char[]> fileBuffer = new ArrayList<>();
+            String line;
+
+            while ((line = bufferedReader.readLine()) != null) {
+                fileBuffer.add(line.toCharArray());
+            }
+            bufferedReader.close();
+            readStream.close();
+
+            language = new char[]{fileBuffer.get(0)[0], fileBuffer.get(0)[1]};
+        }
+        catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        return String.valueOf(language);
+    }
+
 }

@@ -5,10 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.*;
@@ -23,7 +20,7 @@ public class StartController {
     @FXML private Button bntProfile;
 
     @FXML
-    void initialize() throws IOException {
+    void initialize() {
         initFile();
     }
 
@@ -63,27 +60,26 @@ public class StartController {
         System.out.println("Changed difficulty to " + difficulty);
     }
 
-    void initFile() throws IOException {
+    void initFile() {
         try {
             File file = new File(filename);
 
             if (file.createNewFile()) {
                 System.out.println("Created file " + filename);
+                FileWriter writer = new FileWriter(file);
+                writer.write("pt\n5\n.");
+                writer.close();
             }
             else {
                 System.out.println("File " + filename + " already exists");
             }
-
-            FileWriter writer = new FileWriter(file);
-            writer.write("pt\n5\n.");
-            writer.close();
         }
         catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    void writeDifficulty() throws IOException {
+    void writeDifficulty() {
         try {
             File file = new File(filename);
 
@@ -100,6 +96,7 @@ public class StartController {
             char[] value = {difficulty};
             fileBuffer.set(1, value);
             readStream.close();
+            bufferedReader.close();
 
             FileWriter writeStream = new FileWriter(file);
 
