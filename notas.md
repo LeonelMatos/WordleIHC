@@ -64,6 +64,7 @@
 
 - [Animações JavaFX](https://github.com/iAmGio/animated)
 - [Encriptação Cipher](https://www.geeksforgeeks.org/encrypt-and-decrypt-string-file-using-java/)
+- [Java AES Encryption and Decryption](https://www.baeldung.com/java-aes-encryption-decryption)
 
 # Interfaces
 
