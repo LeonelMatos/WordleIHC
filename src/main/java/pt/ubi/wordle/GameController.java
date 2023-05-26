@@ -24,6 +24,7 @@ import java.util.ArrayList;
 public class GameController {
 
     String filename = "settings.txt";
+    String wordFilename = "";
 
     int inputFocused = 1;
 
@@ -37,6 +38,8 @@ public class GameController {
 
     int attempts = 0;
 
+    String word;
+
     String entry = "";
 
 
@@ -46,7 +49,7 @@ public class GameController {
         difficulty = readDifficulty();
         language = readLanguage();
 
-        String word = readWord();
+        word = readWord();
 
         switch (language) {
             case "pt" -> currentLanguage.setImage(new Image("portugal.png"));
@@ -142,12 +145,13 @@ public class GameController {
             System.out.println(input);
             entry = entry + input;
         }
-        System.out.println(entry);
+        System.out.println("Tentativa: " + entry);
 
-        //if (attempt.equals(word)) {
+        if (doesWordExist(entry.toLowerCase())) {
         instantiateInputBox();
         clearInputBox();
-        //}
+        }
+        entry = "";
     }
 
     void focusText(TextField gotoText) {
@@ -250,7 +254,9 @@ public class GameController {
     }
 
     String readWord() {
-        char[] wordFilename = {'0', '-', '0', '0', '.', 't', 'x', 't'}; //ficheiro a abrir (linguagem+dificuldade)
+        char[] wordFilenameArr = {'0', '-', '0', '0', '.', 't', 'x', 't'}; //ficheiro a abrir (linguagem+dificuldade)
+
+        String word = "";
 
         try {
             File file = new File(filename);
@@ -268,25 +274,58 @@ public class GameController {
             readStream.close();
 
             //guarda linguagem
-            wordFilename[2] = fileBuffer.get(0)[0];
-            wordFilename[3] = fileBuffer.get(0)[1];
+            wordFilenameArr[2] = fileBuffer.get(0)[0];
+            wordFilenameArr[3] = fileBuffer.get(0)[1];
 
             //guarda dificuldade
-            wordFilename[0] = fileBuffer.get(1)[0];
+            wordFilenameArr[0] = fileBuffer.get(1)[0];
 
-            System.out.println("Abrir o ficheiro " + String.valueOf(wordFilename));
+            System.out.println("Abrir o ficheiro " + String.valueOf(wordFilenameArr));
 
-            File wordFile = new File("wordlists\\" + String.valueOf(wordFilename));
+            wordFilename = String.valueOf(wordFilenameArr);
+
+            File wordFile = new File("wordlists\\" + wordFilename);
 
             FileReader readStream2 = new FileReader(wordFile);
             BufferedReader bufferedReader2 = new BufferedReader(readStream2);
-            System.out.println(bufferedReader2.readLine());
+            word = bufferedReader2.readLine();
+            System.out.println("A palavra é: " + word);
 
         }
         catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        return "word";
+        return word;
+    }
+
+    boolean doesWordExist(String word) {
+        try {
+            System.out.println("verificando...");
+            File file = new File("wordlists\\" + wordFilename);
+
+            FileReader readStream = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(readStream);
+
+            ArrayList<char[]> fileBuffer = new ArrayList<>();
+            String line;
+
+            while ((line = bufferedReader.readLine()) != null) {
+                if (line.equals(word)) {
+                    System.out.println("A palavra " + word + " existe!");
+                    bufferedReader.close();
+                    readStream.close();
+                    return true;
+                }
+            }
+            bufferedReader.close();
+            readStream.close();
+
+
+        }
+        catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
     }
 
 }
