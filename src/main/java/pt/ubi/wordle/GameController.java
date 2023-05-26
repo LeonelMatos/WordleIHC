@@ -41,6 +41,9 @@ public class GameController {
     @FXML
     private VBox gameBox;
 
+    String yellowBox = "#FFFFCC";
+    String redBox = "#FFCCCC";
+
     @FXML
     void initialize() {
         //Inicializar atributos
@@ -169,16 +172,30 @@ public class GameController {
 
         //Instanciar os labels
         for (int i = 0; i < difficulty; i++) {
+            System.out.println("a criar label " + i);
+            String entryChar = String.valueOf(entry.charAt(i));
             Label label = new Label();
             label.setId(String.valueOf(i));
-            label.setStyle("-fx-background-color: #ACB0F2;" +
+            label.setStyle(" -fx-background-color: #ACB0F2;" +
                     " -fx-font-family: Georgia;" +
                     " -fx-font-size: 25px;" +
                     " -fx-alignment: center;" +
                     " -fx-pref-width: 50px;" +
                     " -fx-pref-height: 50px;" +
                     " -fx-font-weight: bold");
-            label.setText(String.valueOf(entry.charAt(i)));
+            label.setText(entryChar);
+
+            if (word.contains(entryChar.toLowerCase())) {
+                System.out.println("existe " + entryChar);
+                label.setStyle(" -fx-background-color: " + yellowBox + ";" +
+                        " -fx-font-family: Georgia;" +
+                        " -fx-font-size: 25px;" +
+                        " -fx-alignment: center;" +
+                        " -fx-pref-width: 50px;" +
+                        " -fx-pref-height: 50px;" +
+                        " -fx-font-weight: bold");
+            }
+
             gBox.getChildren().add(label);
 
         }
