@@ -17,7 +17,7 @@
    <children>
       <BorderPane>
          <right>
-            <Button fx:id="bntProfile" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleProfileButton" style="-fx-background-color: #ACB0F2;" text="Perfis" textAlignment="CENTER" textFill="WHITE" BorderPane.alignment="CENTER">
+            <Button fx:id="bntProfile" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleProfileButton" style="-fx-background-color: #ACB0F2;" text="Perfil" textAlignment="CENTER" textFill="WHITE" BorderPane.alignment="CENTER">
                <font>
                   <Font name="Georgia Bold" size="18.0" />
                </font>

@@ -20,6 +20,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class GameController {
 
@@ -248,6 +249,29 @@ public class GameController {
         return String.valueOf(language);
     }
 
+    int countFileSize(String path) {
+        try {
+            int lineCount = 0;
+
+            File wordFile = new File("wordlists\\" + path);
+
+            FileReader readStream = new FileReader(wordFile);
+            BufferedReader bufferedReader = new BufferedReader(readStream);
+
+            while (bufferedReader.readLine() != null)
+                lineCount++;
+
+            bufferedReader.close();
+            readStream.close();
+
+            return lineCount;
+        }
+        catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        return 0;
+    }
+
     String readWord() {
         char[] wordFilenameArr = {'0', '-', '0', '0', '.', 't', 'x', 't'}; //ficheiro a abrir (linguagem+dificuldade)
 
@@ -260,6 +284,7 @@ public class GameController {
             BufferedReader bufferedReader = new BufferedReader(readStream);
 
             ArrayList<char[]> fileBuffer = new ArrayList<>();
+
             String line;
 
             while ((line = bufferedReader.readLine()) != null) {
@@ -279,12 +304,25 @@ public class GameController {
 
             wordFilename = String.valueOf(wordFilenameArr);
 
+            int lineCount = countFileSize(wordFilename);
+
             File wordFile = new File("wordlists\\" + wordFilename);
 
             FileReader readStream2 = new FileReader(wordFile);
             BufferedReader bufferedReader2 = new BufferedReader(readStream2);
+
+            Random random = new Random();
+            int randomLine = random.nextInt(lineCount) + 1;
+
+            for (int i = 0; i < randomLine; i++)
+                bufferedReader2.readLine();
+
             word = bufferedReader2.readLine();
-            System.out.println("A palavra é: " + word);
+
+            bufferedReader2.close();
+            readStream2.close();
+
+            System.out.println("A palavra é: " + word + " (linha " + randomLine + ")");
 
         } catch (IOException e) {
             System.out.println(e.getMessage());

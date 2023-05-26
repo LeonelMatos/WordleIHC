@@ -73,8 +73,6 @@ public class StartController {
                 FileWriter writer = new FileWriter(file);
                 writer.write("pt\n5\n.");
                 writer.close();
-            } else {
-                System.out.println("File " + filename + " already exists");
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());

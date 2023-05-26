@@ -40,8 +40,6 @@ public class SettingsController {
 
         language = selectedBox.getId().toLowerCase();
 
-        //selectedBox.setStyle("-fx-background-color: #CCCCCC"); Ponderar dar um feedback para a selecionada
-
         System.out.println("choose language " + language);
 
         try {
@@ -68,6 +66,7 @@ public class SettingsController {
                 writeStream.write("\n");
             }
             writeStream.close();
+            handleExitButton();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
