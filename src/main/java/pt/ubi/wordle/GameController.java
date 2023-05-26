@@ -37,8 +37,6 @@ public class GameController {
 
     int attempts = 0;
 
-    String word = "java";
-
     String entry = "";
 
 
@@ -47,10 +45,13 @@ public class GameController {
         //Inicializar atributos
         difficulty = readDifficulty();
         language = readLanguage();
+
+        String word = readWord();
+
         switch (language) {
-            case "pt" -> System.out.println("Portugal");//currentLanguage.setImage(new Image("flags/portugal.png"));
-            case "en" -> System.out.println("English");//currentLanguage.setImage(new Image("flags/united-kingdom.png"));
-            case "fr" -> currentLanguage.setImage(new Image("flags/france.png"));
+            case "pt" -> currentLanguage.setImage(new Image("portugal.png"));
+            case "en" -> currentLanguage.setImage(new Image("united-kingdom.png"));
+            case "fr" -> currentLanguage.setImage(new Image("france.png"));
             default -> System.out.println("Image not found");
         }
 
@@ -127,7 +128,6 @@ public class GameController {
 
         }
 
-        System.out.println(isAllTextFieldsFilled(gBox));
         if (isAllTextFieldsFilled(gBox) && attempts <= difficulty) {
             submitWord();
         }
@@ -247,6 +247,46 @@ public class GameController {
             System.out.println(e.getMessage());
         }
         return String.valueOf(language);
+    }
+
+    String readWord() {
+        char[] wordFilename = {'0', '-', '0', '0', '.', 't', 'x', 't'}; //ficheiro a abrir (linguagem+dificuldade)
+
+        try {
+            File file = new File(filename);
+
+            FileReader readStream = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(readStream);
+
+            ArrayList<char[]> fileBuffer = new ArrayList<>();
+            String line;
+
+            while((line = bufferedReader.readLine()) != null) {
+                fileBuffer.add(line.toCharArray());
+            }
+            bufferedReader.close();
+            readStream.close();
+
+            //guarda linguagem
+            wordFilename[2] = fileBuffer.get(0)[0];
+            wordFilename[3] = fileBuffer.get(0)[1];
+
+            //guarda dificuldade
+            wordFilename[0] = fileBuffer.get(1)[0];
+
+            System.out.println("Abrir o ficheiro " + String.valueOf(wordFilename));
+
+            File wordFile = new File("wordlists\\" + String.valueOf(wordFilename));
+
+            FileReader readStream2 = new FileReader(wordFile);
+            BufferedReader bufferedReader2 = new BufferedReader(readStream2);
+            System.out.println(bufferedReader2.readLine());
+
+        }
+        catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        return "word";
     }
 
 }
