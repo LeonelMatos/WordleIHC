@@ -23,9 +23,9 @@ public class ProfileController {
     private int profileCounter = 0;
 
     @FXML
-    VBox profileHolder;
+    private VBox profileHolder;
     @FXML
-    Button btnExit;
+    private Button btnExit;
 
     @FXML
     void instantiateProfileBox() {

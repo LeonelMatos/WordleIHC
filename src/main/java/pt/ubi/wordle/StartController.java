@@ -16,8 +16,10 @@ public class StartController {
     char difficulty = '5';
     String filename = "settings.txt";
 
-    @FXML private Button bntPlay;
-    @FXML private Button bntProfile;
+    @FXML
+    private Button bntPlay;
+    @FXML
+    private Button bntProfile;
 
     @FXML
     void initialize() {
@@ -36,7 +38,8 @@ public class StartController {
         currentStage.setScene(newScene);
     }
 
-    @FXML protected void handleSettingsButton() throws IOException {
+    @FXML
+    protected void handleSettingsButton() throws IOException {
         Stage currentStage = (Stage) bntPlay.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("settings-view.fxml"));
         Scene newScene = new Scene(fxmlLoader.load());
@@ -44,7 +47,8 @@ public class StartController {
         currentStage.setScene(newScene);
     }
 
-    @FXML protected void handleProfileButton() throws IOException {
+    @FXML
+    protected void handleProfileButton() throws IOException {
         Stage currentStage = (Stage) bntProfile.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("profile-view.fxml"));
         Scene newScene = new Scene(fxmlLoader.load());
@@ -69,12 +73,10 @@ public class StartController {
                 FileWriter writer = new FileWriter(file);
                 writer.write("pt\n5\n.");
                 writer.close();
-            }
-            else {
+            } else {
                 System.out.println("File " + filename + " already exists");
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -105,8 +107,7 @@ public class StartController {
                 writeStream.write("\n");
             }
             writeStream.close();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }

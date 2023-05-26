@@ -25,26 +25,23 @@ public class GameController {
 
     String filename = "settings.txt";
     String wordFilename = "";
-
-    int inputFocused = 1;
-
-    @FXML private Button bntExit;
-
-    @FXML private VBox gameBox;
-
-    int difficulty = 5;
     String language = "pt";
-    @FXML ImageView currentLanguage;
-
-    int attempts = 0;
-
+    String entry = "";
     String word;
 
-    String entry = "";
-
+    int inputFocused = 1;
+    int difficulty = 5;
+    int attempts = 0;
 
     @FXML
-    void initialize () {
+    private ImageView currentLanguage;
+    @FXML
+    private Button bntExit;
+    @FXML
+    private VBox gameBox;
+
+    @FXML
+    void initialize() {
         //Inicializar atributos
         difficulty = readDifficulty();
         language = readLanguage();
@@ -97,6 +94,7 @@ public class GameController {
 
 
     HBox inputBox;
+
     // Move o cursor para a próxima letra no input
     // Guarda o input dado
     // Verifica tentativas
@@ -120,13 +118,12 @@ public class GameController {
             textField.clear();  //Backspace limpa text field
             int currentId = Integer.parseInt(textField.getId());
             if (currentId == 0) return;
-            TextField gotoText = (TextField) gBox.getChildren().get(currentId-1);
+            TextField gotoText = (TextField) gBox.getChildren().get(currentId - 1);
             gotoText.requestFocus();
-        }
-        else if (!textField.getText().isEmpty()) {
+        } else if (!textField.getText().isEmpty()) {
             int currentId = Integer.parseInt(textField.getId());
-            if (currentId == difficulty -1) return;
-            TextField gotoText = (TextField) gBox.getChildren().get(currentId+1);
+            if (currentId == difficulty - 1) return;
+            TextField gotoText = (TextField) gBox.getChildren().get(currentId + 1);
             focusText(gotoText);
 
         }
@@ -148,8 +145,8 @@ public class GameController {
         System.out.println("Tentativa: " + entry);
 
         if (doesWordExist(entry.toLowerCase())) {
-        instantiateInputBox();
-        clearInputBox();
+            instantiateInputBox();
+            clearInputBox();
         }
         entry = "";
     }
@@ -195,7 +192,7 @@ public class GameController {
         return true;
     }
 
-    void clearInputBox () {
+    void clearInputBox() {
         for (int i = 0; i < difficulty; i++) {
             TextField currentField = (TextField) inputBox.getChildren().get(i);
             currentField.clear();
@@ -221,8 +218,7 @@ public class GameController {
             bufferedReader.close();
             readStream.close();
             value = Integer.parseInt(String.valueOf(fileBuffer.get(1)[0]));
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
         return value; //Integer.parseInt(String.valueOf(value));
@@ -246,8 +242,7 @@ public class GameController {
             readStream.close();
 
             language = new char[]{fileBuffer.get(0)[0], fileBuffer.get(0)[1]};
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
         return String.valueOf(language);
@@ -267,7 +262,7 @@ public class GameController {
             ArrayList<char[]> fileBuffer = new ArrayList<>();
             String line;
 
-            while((line = bufferedReader.readLine()) != null) {
+            while ((line = bufferedReader.readLine()) != null) {
                 fileBuffer.add(line.toCharArray());
             }
             bufferedReader.close();
@@ -291,8 +286,7 @@ public class GameController {
             word = bufferedReader2.readLine();
             System.out.println("A palavra é: " + word);
 
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
         return word;
@@ -321,8 +315,7 @@ public class GameController {
             readStream.close();
 
 
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
         return false;

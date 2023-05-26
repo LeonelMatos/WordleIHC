@@ -1,11 +1,9 @@
 package pt.ubi.wordle;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -19,10 +17,12 @@ public class SettingsController {
 
     @FXML
     private Button btnExit;
-
-    @FXML HBox PT;
-    @FXML HBox EN;
-    @FXML HBox FR;
+    @FXML
+    private HBox PT;
+    @FXML
+    private HBox EN;
+    @FXML
+    private HBox FR;
 
     @FXML
     void handleExitButton() throws IOException {
@@ -68,8 +68,7 @@ public class SettingsController {
                 writeStream.write("\n");
             }
             writeStream.close();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }
