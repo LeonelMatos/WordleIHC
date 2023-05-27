@@ -56,6 +56,12 @@ public class StartController {
         currentStage.setScene(newScene);
     }
 
+    @FXML
+    protected void handleExitButton() throws IOException {
+        Stage currentStage = (Stage) bntProfile.getScene().getWindow();
+        currentStage.close();
+    }
+
     //Selecionar a dificuldade com base no dropdown selecionado
     @FXML
     void selectDifficulty(ActionEvent event) {

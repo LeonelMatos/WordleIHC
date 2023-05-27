@@ -37,12 +37,16 @@ public class GameController {
     @FXML
     private ImageView currentLanguage;
     @FXML
+    private Button btnProfile;
+    @FXML
     private Button bntExit;
     @FXML
     private VBox gameBox;
 
     String yellowBox = "#FFFFCC";
-    String redBox = "#FFCCCC";
+    String greenBox = "#C3E6CB";
+
+    boolean gameWon = false;
 
     @FXML
     void initialize() {
@@ -85,6 +89,19 @@ public class GameController {
 
         }
         gBox.getChildren().get(1).requestFocus();
+    }
+
+    void endOfGame() { //Fim do jogo ganho
+
+    }
+
+    @FXML
+    protected void handleProfileButton() throws IOException {
+        Stage currentStage = (Stage) btnProfile.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("profile-view.fxml"));
+        Scene newScene = new Scene(fxmlLoader.load());
+        currentStage.setTitle("Wordle Profile");
+        currentStage.setScene(newScene);
     }
 
     @FXML
@@ -161,6 +178,8 @@ public class GameController {
 
     void instantiateInputBox() {
         //Instanciar o gamebox
+        int correctChars = 0;
+
         HBox gBox = new HBox();
         gBox.setPrefHeight(80);
         gBox.setPrefWidth(200);
@@ -172,7 +191,7 @@ public class GameController {
 
         //Instanciar os labels
         for (int i = 0; i < difficulty; i++) {
-            System.out.println("a criar label " + i);
+
             String entryChar = String.valueOf(entry.charAt(i));
             Label label = new Label();
             label.setId(String.valueOf(i));
@@ -186,17 +205,36 @@ public class GameController {
             label.setText(entryChar);
 
             if (word.contains(entryChar.toLowerCase())) {
-                System.out.println("existe " + entryChar);
-                label.setStyle(" -fx-background-color: " + yellowBox + ";" +
-                        " -fx-font-family: Georgia;" +
-                        " -fx-font-size: 25px;" +
-                        " -fx-alignment: center;" +
-                        " -fx-pref-width: 50px;" +
-                        " -fx-pref-height: 50px;" +
-                        " -fx-font-weight: bold");
+                if (word.charAt(i) == entryChar.toLowerCase().charAt(0)) {
+                    System.out.println("Letra na posição correta");
+                    label.setStyle(" -fx-background-color: " + greenBox + ";" +
+                            " -fx-font-family: Georgia;" +
+                            " -fx-font-size: 25px;" +
+                            " -fx-alignment: center;" +
+                            " -fx-pref-width: 50px;" +
+                            " -fx-pref-height: 50px;" +
+                            " -fx-font-weight: bold");
+                    correctChars++;
+                }
+                else {
+                    System.out.println("Contém a letra");
+                    label.setStyle(" -fx-background-color: " + yellowBox + ";" +
+                            " -fx-font-family: Georgia;" +
+                            " -fx-font-size: 25px;" +
+                            " -fx-alignment: center;" +
+                            " -fx-pref-width: 50px;" +
+                            " -fx-pref-height: 50px;" +
+                            " -fx-font-weight: bold");
+                }
             }
 
             gBox.getChildren().add(label);
+
+            if (correctChars == difficulty) {
+                gameWon = true;
+            }
+
+            correctChars = 0;
 
         }
     }

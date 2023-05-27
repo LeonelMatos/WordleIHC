@@ -60,7 +60,7 @@
                   </SplitMenuButton>
                </children>
             </HBox>
-            <Button fx:id="bntSetting1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleSettingsButton" style="-fx-background-color: ff6962;" text="Sair" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="bntSetting1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleExitButton" style="-fx-background-color: ff6962;" text="Sair" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Georgia Bold" size="18.0" />
                </font>

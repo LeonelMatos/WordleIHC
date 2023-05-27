@@ -28,6 +28,13 @@
 
 - [x] Trocar idioma (francês, inglês, português)
 - [x] Níveis de dificuldade (3->7)
+- [x] Jogo em si
+
+## Fim de jogo
+- [ ] Criar scene-view de final
+- [ ] Passar palavra correta e mostrá-la no topo
+- [ ] Mostrar no número de tentativas
+- [ ] Mostrar pontuação e leaderboard simplificada
 
 ## Encriptação
 
@@ -39,9 +46,23 @@
 
 ## Salvar dados
 
-- [ ] Ler/escrever a dificuldade
-- [ ] Ler/escrever a linguagem
-- [ ] Ler/escrever perfis, pontuação
+- [x] Ler/escrever a dificuldade
+- [x] Ler/escrever a linguagem
+- [x] Ler/escrever perfis, pontuação
+
+## Formato settings.txt
+
+```
+LINGUAGEM
+DIFICULDADE
+PALAVRA ATUAL
+TENTATIVAS
+PONTUAÇÃO_HOLDER
+. (separador)
+NOME|PONTUAÇÃO|COLOR_ID 
+
+("|" serve como separador, porque o nome pode ser Leonel Matos 10pts. Como ler nome completo?)
+```
 
 # Notas
 
