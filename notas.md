@@ -59,9 +59,13 @@ PALAVRA ATUAL
 TENTATIVAS
 PONTUAÇÃO_HOLDER
 . (separador)
-NOME|PONTUAÇÃO|COLOR_ID 
+>NOME|PONTUAÇÃO|COLOR_ID 
+Nome2|PONTUAÇÃO2|COLOR_ID
 
 ("|" serve como separador, porque o nome pode ser Leonel Matos 10pts. Como ler nome completo?)
+(">" serve para apontar para o perfil atual selecionado que estará a jogar.
+Quando queremos dar display ou guardar informação no perfil atual iremos procurar cada linha
+até que o caracter inicial seja ">")
 ```
 
 # Notas
