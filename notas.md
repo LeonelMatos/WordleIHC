@@ -6,6 +6,8 @@
 
 - [x] Criar repositório
 - [ ] Lançar app na Microsoft Store
+- [ ] Lançar app na Steam
+- [ ] Lançar app na Play Store/App Store
 
 ## Interface
 
@@ -32,7 +34,7 @@
 
 ## Fim de jogo
 
-- [ ] Criar scene-view de final
+- [x] Criar scene-view de final
 - [ ] Passar palavra correta e mostrá-la no topo
 - [ ] Mostrar no número de tentativas
 - [ ] Mostrar pontuação e leaderboard simplificada

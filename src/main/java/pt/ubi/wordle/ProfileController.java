@@ -17,10 +17,17 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.scene.layout.Priority;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class ProfileController {
+
+    private final String currDir = System.getProperty("user.dir");
+    String filename = currDir + "/settings.txt";
 
     private int profileCounter = 0;
 
@@ -34,6 +41,42 @@ public class ProfileController {
     //Usado para saber qual remover quando pedido
     @FXML
     private HBox currentProfileBox;
+
+    @FXML
+    void initialize () {
+        try {
+            File file = new File(filename);
+
+            FileReader readStream = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(readStream);
+
+            ArrayList<String> fileBuffer = new ArrayList<>();
+            String line;
+
+            while ((line = bufferedReader.readLine()) != null) {
+                fileBuffer.add(line);
+            }
+            bufferedReader.close();
+            readStream.close();
+
+            for (int index = 5; index < fileBuffer.size()-1; index++) {
+                if (fileBuffer.get(index).isEmpty()) continue;
+                System.out.println("checking " + index);
+                line = fileBuffer.get(index);
+
+                if (line.charAt(0) == '>') {
+                    line = line.substring(1);
+                }
+
+                String[] values = line.split("\\|");
+
+                instantiateProfileBox(values[0], values[1]);
+            }
+        }
+        catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
 
     @FXML
     void instantiateProfileBox() {
@@ -66,29 +109,17 @@ public class ProfileController {
         VBox vBox2 = new VBox();
         vBox2.setAlignment(Pos.CENTER);
         vBox2.setSpacing(20);
-        //HBox.setHgrow(vBox2, Priority.SOMETIMES);
         profileBox.getChildren().add(vBox2);
 
         //Set ProfileId
         Label title = new Label("Perfil " + profileCounter);
         title.setStyle(" -fx-font-family: Georgia;" + " -fx-font-size: 14px;" + " -fx-alignment: center;" + " -fx-font-weight: bold");
-        //HBox.setHgrow(title, Priority.SOMETIMES);
         vBox1.getChildren().add(title);
 
         TextField textField = new TextField();
         textField.setText("nome");
         textField.setStyle(" -fx-font-family: Georgia;" + " -fx-font-size: 18px");
         vBox1.getChildren().add(textField);
-
-        //Set Name
-        /*Label name = new Label("Leonel");
-        name.setStyle(" -fx-font-family: Georgia;" +
-                " -fx-font-size: 24px;" +
-                " -fx-alignment: center;" +
-                " -fx-font-weight: bold");
-        //HBox.setHgrow(name, Priority.SOMETIMES);
-        vBox1.getChildren().add(name);
-        */
 
         //Set Edit
         Button create = new Button("Criar");
@@ -102,6 +133,58 @@ public class ProfileController {
         remove.setOnAction(removeProfilePrompt);
         vBox2.getChildren().add(remove);
 
+    }
+
+    void instantiateProfileBox(String name, String circleId) {
+        System.out.println("Profile: " + name + circleId);
+        newProfileButton.setDisable(true);
+        //Set ProfileBox
+        profileCounter++;
+        HBox profileBox = new HBox();
+        currentProfileBox = profileBox;
+        profileBox.setAlignment(Pos.CENTER);
+        profileBox.setSpacing(50);
+        profileBox.setPrefHeight(100);
+        profileBox.setPrefWidth(200);
+        profileBox.setStyle("-fx-background-color: #BBBBFF");
+        int index = profileHolder.getChildren().size();
+        profileBox.setSpacing(10);
+        profileBox.setPadding(new Insets(20));
+        profileHolder.getChildren().add(index, profileBox);
+
+        //Set ColorId
+        Circle colorId = new Circle(30, Color.valueOf(circleId));
+        profileBox.getChildren().add(colorId);
+
+        //Set VBox1
+        VBox vBox1 = new VBox();
+        vBox1.setAlignment(Pos.CENTER_LEFT);
+        HBox.setHgrow(vBox1, Priority.SOMETIMES);
+        profileBox.getChildren().add(vBox1);
+
+        //Set VBox2
+        VBox vBox2 = new VBox();
+        vBox2.setAlignment(Pos.CENTER);
+        vBox2.setSpacing(20);
+        profileBox.getChildren().add(vBox2);
+
+        //Set ProfileId
+        Label title = new Label("Perfil " + profileCounter);
+        title.setStyle(" -fx-font-family: Georgia;" + " -fx-font-size: 14px;" + " -fx-alignment: center;" + " -fx-font-weight: bold");
+        vBox1.getChildren().add(title);
+
+        //Set Name
+        Label nameLabel = new Label(name);
+        nameLabel.setStyle(" -fx-font-family: Georgia;" + " -fx-font-size: 24px;" + " -fx-alignment: center;" + " -fx-font-weight: bold");
+        vBox1.getChildren().add(nameLabel);
+
+        vBox2.getChildren().remove(0);
+        Button create = new Button("Editar");
+        create.setStyle(" -fx-background-color: #EEEEEE;" + " -fx-font-family: Georgia;" + " -fx-font-size: 14px;" + " -fx-font-weight: bold");
+        vBox2.getChildren().add(0, create);
+
+        Button removeButton = (Button) vBox2.getChildren().get(1);
+        removeButton.setOnAction(removeProfile);
     }
 
 
