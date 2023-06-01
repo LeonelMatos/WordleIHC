@@ -15,10 +15,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -37,7 +34,7 @@ public class GameController {
 
     int inputFocused = 1;
     int difficulty = 5;
-    int attempts = 0;
+    int attempts = 1;
 
     @FXML
     private ImageView currentLanguage;
@@ -56,6 +53,7 @@ public class GameController {
         difficulty = readDifficulty();
         language = readLanguage();
         word = readWord();
+        writeWord();
 
         switch (language) {
             case "pt" -> currentLanguage.setImage(new Image("portugal.png"));
@@ -91,8 +89,16 @@ public class GameController {
         gBox.getChildren().get(1).requestFocus();
     }
 
-    void endOfGame() { //Fim do jogo ganho
+    void endOfGameWin() { //Fim do jogo ganho
         gameWon = true;
+        System.out.println("FIM DE JOGO!");
+        writeAttempts();
+        try {
+            handleFinalView();
+        }
+        catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @FXML
@@ -110,6 +116,14 @@ public class GameController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("start-view.fxml"));
         Scene newScene = new Scene(fxmlLoader.load());
         currentStage.setTitle("Wordle Settings");
+        currentStage.setScene(newScene);
+    }
+
+    void handleFinalView() throws IOException {
+        Stage currentStage = (Stage) bntExit.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("final-view.fxml"));
+        Scene newScene = new Scene(fxmlLoader.load());
+        currentStage.setTitle(word);
         currentStage.setScene(newScene);
     }
 
@@ -150,6 +164,7 @@ public class GameController {
         if (isAllTextFieldsFilled(gBox) && attempts <= difficulty) {
             submitWord();
         }
+
     }
 
     @FXML
@@ -157,7 +172,6 @@ public class GameController {
         for (int i = 0; i < difficulty; i++) {
             TextField currentField = (TextField) inputBox.getChildren().get(i);
             String input = currentField.getText();
-            System.out.println(input);
             entry = entry.concat(input);
         }
         System.out.println("Tentativa: " + entry);
@@ -165,6 +179,7 @@ public class GameController {
         if (doesWordExist(entry.toLowerCase())) {
             instantiateInputBox();
             clearInputBox();
+            attempts++;
         }
         entry = "";
     }
@@ -202,7 +217,6 @@ public class GameController {
 
             if (word.contains(entryChar.toLowerCase())) {
                 if (word.charAt(i) == entryChar.toLowerCase().charAt(0)) {
-                    System.out.println("Letra na posição correta");
                     label.setStyle(" -fx-background-color: " + greenBox + ";" +
                             " -fx-font-family: Georgia;" +
                             " -fx-font-size: 25px;" +
@@ -212,7 +226,6 @@ public class GameController {
                             " -fx-font-weight: bold");
                     correctChars++;
                 } else {
-                    System.out.println("Contém a letra");
                     label.setStyle(" -fx-background-color: " + yellowBox + ";" +
                             " -fx-font-family: Georgia;" +
                             " -fx-font-size: 25px;" +
@@ -226,10 +239,9 @@ public class GameController {
             gBox.getChildren().add(label);
 
             if (correctChars == difficulty) {
-                //endOfGame();
-                gameWon = true;
+                endOfGameWin();
             }
-            correctChars = 0;
+            //TODO quando acabar as tentativas mostrar ecrã de fim de jogo como perdeu.
         }
     }
 
@@ -380,23 +392,22 @@ public class GameController {
 
     boolean doesWordExist(String word) {
         try {
-            System.out.println("verificando...");
             File file = new File(currDir + "/wordlists/" + wordFilename);
 
             FileReader readStream = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(readStream);
 
-            ArrayList<char[]> fileBuffer = new ArrayList<>();
             String line;
 
             while ((line = bufferedReader.readLine()) != null) {
                 if (line.equals(word)) {
-                    System.out.println("A palavra " + word + " existe!");
+                    System.out.println("A palavra " + word + " existe! (✿◠‿◠)");
                     bufferedReader.close();
                     readStream.close();
                     return true;
                 }
             }
+            System.out.println("A palavra " + "não existe (ง •̀_•́)ง");
             bufferedReader.close();
             readStream.close();
 
@@ -404,5 +415,66 @@ public class GameController {
             System.out.println(e.getMessage());
         }
         return false;
+    }
+
+    void writeWord() {
+        try {
+            File file = new File(filename);
+
+            FileReader readStream = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(readStream);
+
+            ArrayList<String> fileBuffer = new ArrayList<>();
+            String line;
+
+            while ((line = bufferedReader.readLine()) != null) {
+                fileBuffer.add(line);
+            }
+            bufferedReader.close();
+            readStream.close();
+
+            fileBuffer.set(2, word);
+
+            FileWriter writeStream = new FileWriter(file);
+
+            for (String lines : fileBuffer) {
+                writeStream.write(lines);
+                writeStream.write("\n");
+            }
+            writeStream.close();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    void writeAttempts() {
+        try {
+            File file = new File(filename);
+
+            FileReader readStream = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(readStream);
+
+            ArrayList<String> fileBuffer = new ArrayList<>();
+            String line;
+
+            while ((line = bufferedReader.readLine()) != null) {
+                fileBuffer.add(line);
+            }
+            bufferedReader.close();
+            readStream.close();
+
+            fileBuffer.set(3, String.valueOf(attempts));
+
+            FileWriter writeStream = new FileWriter(file);
+
+            for (String lines : fileBuffer) {
+                writeStream.write(lines);
+                writeStream.write("\n");
+            }
+            writeStream.close();
+            System.out.println("Made " + attempts + " attempts (づ｡◕‿‿◕｡)づ");
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
