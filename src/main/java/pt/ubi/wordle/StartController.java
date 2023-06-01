@@ -29,7 +29,7 @@ public class StartController {
     @FXML
     void handlePlayButton() throws IOException {
         //Escreve a dificuldade em ficheiro
-        writeDifficulty();
+        //writeDifficulty();
 
         Stage currentStage = (Stage) bntPlay.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("game-view.fxml"));
