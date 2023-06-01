@@ -8,7 +8,7 @@ import java.util.Base64;
 
 public class Encryption {
     private static final String ALGORITHM = "AES";
-    private static final String SECRET_KEY = "ThisIsASecretKey";
+    private static final String SECRET_KEY = "]%SS%cE(<7M+^#0mVzIVqDy@l+$3|v-%";
 
     public static String aesAlgorithm(String text, int mode) throws Exception {
         SecretKey secretKey = new SecretKeySpec(SECRET_KEY.getBytes(), ALGORITHM);
