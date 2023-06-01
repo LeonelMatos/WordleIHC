@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Random;
 
 public class GameController {
@@ -75,13 +76,7 @@ public class GameController {
         for (int i = 0; i < difficulty; i++) {
             TextField textField = new TextField();
             textField.setId(String.valueOf(i));
-            textField.setStyle("-fx-background-color: #ACB0F2;" +
-                    " -fx-font-family: Georgia;" +
-                    " -fx-font-size: 25px;" +
-                    " -fx-alignment: center;" +
-                    " -fx-pref-width: 55px;" +
-                    " -fx-pref-height: 55px;" +
-                    " -fx-font-weight: bold");
+            textField.setStyle("-fx-background-color: #ACB0F2;" + " -fx-font-family: Georgia;" + " -fx-font-size: 25px;" + " -fx-alignment: center;" + " -fx-pref-width: 55px;" + " -fx-pref-height: 55px;" + " -fx-font-weight: bold");
             textField.setOnKeyPressed(this::textInputHandler);
             //textField.setOnKeyPressed(event -> selectedTextField(event, gBox));
             gBox.getChildren().add(textField);
@@ -206,17 +201,12 @@ public class GameController {
             String entryChar = String.valueOf(entry.charAt(i));
             Label label = new Label();
             label.setId(String.valueOf(i));
-            label.setStyle(" -fx-background-color: #ACB0F2;" +
-                    " -fx-font-family: Georgia;" +
-                    " -fx-font-size: 25px;" +
-                    " -fx-alignment: center;" +
-                    " -fx-pref-width: 50px;" +
-                    " -fx-pref-height: 50px;" +
-                    " -fx-font-weight: bold");
+            label.setStyle(" -fx-background-color: #ACB0F2;" + " -fx-font-family: Georgia;" + " -fx-font-size: 25px;" + " -fx-alignment: center;" + " -fx-pref-width: 50px;" + " -fx-pref-height: 50px;" + " -fx-font-weight: bold");
             label.setText(entryChar);
 
             if (word.contains(entryChar.toLowerCase())) {
                 if (word.charAt(i) == entryChar.toLowerCase().charAt(0)) {
+
                     label.setStyle(" -fx-background-color: " + greenBox + ";" +
                             " -fx-font-family: Georgia;" +
                             " -fx-font-size: 25px;" +
@@ -233,7 +223,7 @@ public class GameController {
                             " -fx-pref-width: 50px;" +
                             " -fx-pref-height: 50px;" +
                             " -fx-font-weight: bold");
-                }
+                    }
             }
 
             gBox.getChildren().add(label);
@@ -241,15 +231,13 @@ public class GameController {
             if (correctChars == difficulty) {
                 endOfGameWin();
             }
-            //TODO quando acabar as tentativas mostrar ecrã de fim de jogo como perdeu.
         }
     }
 
     private Boolean isAllTextFieldsFilled(HBox gBox) {
         for (int i = 0; i < difficulty; i++) {
             TextField currentField = (TextField) gBox.getChildren().get(i);
-            if (currentField.getText().isEmpty())
-                return false;
+            if (currentField.getText().isEmpty()) return false;
         }
         return true;
     }
@@ -281,7 +269,7 @@ public class GameController {
             readStream.close();
             value = Integer.parseInt(String.valueOf(fileBuffer.get(1)[0]));
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
         return value; //Integer.parseInt(String.valueOf(value));
     }
@@ -305,7 +293,7 @@ public class GameController {
 
             language = new char[]{fileBuffer.get(0)[0], fileBuffer.get(0)[1]};
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
         return String.valueOf(language);
     }
@@ -319,15 +307,14 @@ public class GameController {
             FileReader readStream = new FileReader(wordFile);
             BufferedReader bufferedReader = new BufferedReader(readStream);
 
-            while (bufferedReader.readLine() != null)
-                lineCount++;
+            while (bufferedReader.readLine() != null) lineCount++;
 
             bufferedReader.close();
             readStream.close();
 
             return lineCount;
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
         return 0;
     }
@@ -377,15 +364,15 @@ public class GameController {
             for (int i = 0; i < randomLine; i++)
                 bufferedReader2.readLine();
 
-            word = bufferedReader2.readLine().toLowerCase();
+            word = Objects.requireNonNull(Encryption.aesAlgorithm(bufferedReader2.readLine(), 2)).toLowerCase();
 
             bufferedReader2.close();
             readStream2.close();
 
             System.out.println("A palavra é: " + word + " (linha " + randomLine + ")");
 
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
         }
         return word;
     }
@@ -399,7 +386,7 @@ public class GameController {
 
             String line;
 
-            while ((line = bufferedReader.readLine()) != null) {
+            while ((line = Encryption.aesAlgorithm(bufferedReader.readLine(), 2)) != null) {
                 if (line.equals(word)) {
                     System.out.println("A palavra " + word + " existe! (✿◠‿◠)");
                     bufferedReader.close();
@@ -411,8 +398,8 @@ public class GameController {
             bufferedReader.close();
             readStream.close();
 
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
         }
         return false;
     }
@@ -443,7 +430,7 @@ public class GameController {
             }
             writeStream.close();
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
     }
 
@@ -474,7 +461,7 @@ public class GameController {
             writeStream.close();
             System.out.println("Made " + attempts + " attempts (づ｡◕‿‿◕｡)づ");
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
     }
 }

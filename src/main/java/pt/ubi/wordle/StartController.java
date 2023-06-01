@@ -82,7 +82,7 @@ public class StartController {
                 writer.close();
             }
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
     }
 
@@ -113,7 +113,7 @@ public class StartController {
             }
             writeStream.close();
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
     }
 

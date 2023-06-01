@@ -31,6 +31,7 @@
 - [x] Jogo em si
 
 ## Fim de jogo
+
 - [ ] Criar scene-view de final
 - [ ] Passar palavra correta e mostrá-la no topo
 - [ ] Mostrar no número de tentativas
@@ -38,7 +39,7 @@
 
 ## Encriptação
 
-- [ ] Encontrar biblioteca de encriptação
+- [x] Encontrar biblioteca de encriptação
 
 ## Idiomas
 
@@ -49,6 +50,13 @@
 - [x] Ler/escrever a dificuldade
 - [x] Ler/escrever a linguagem
 - [x] Ler/escrever perfis, pontuação
+
+## Wordlists
+
+- [x] Inglês
+- [x] Português
+- [x] Francês
+- [x] Encriptação das wordlists
 
 ## Formato settings.txt
 
