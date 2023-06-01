@@ -24,11 +24,16 @@ import java.util.Random;
 
 public class GameController {
 
-    String filename = "settings.txt";
+    private final String currDir = System.getProperty("user.dir");
+    String filename = currDir + "/settings.txt";
+    String yellowBox = "#FFFFCC";
+    String greenBox = "#C3E6CB";
     String wordFilename = "";
     String language = "pt";
     String entry = "";
     String word;
+
+    boolean gameWon = false;
 
     int inputFocused = 1;
     int difficulty = 5;
@@ -41,19 +46,15 @@ public class GameController {
     @FXML
     private Button bntExit;
     @FXML
+    private HBox inputBox;
+    @FXML
     private VBox gameBox;
-
-    String yellowBox = "#FFFFCC";
-    String greenBox = "#C3E6CB";
-
-    boolean gameWon = false;
 
     @FXML
     void initialize() {
         //Inicializar atributos
         difficulty = readDifficulty();
         language = readLanguage();
-
         word = readWord();
 
         switch (language) {
@@ -86,13 +87,12 @@ public class GameController {
             textField.setOnKeyPressed(this::textInputHandler);
             //textField.setOnKeyPressed(event -> selectedTextField(event, gBox));
             gBox.getChildren().add(textField);
-
         }
         gBox.getChildren().get(1).requestFocus();
     }
 
     void endOfGame() { //Fim do jogo ganho
-
+        gameWon = true;
     }
 
     @FXML
@@ -114,8 +114,6 @@ public class GameController {
     }
 
 
-    HBox inputBox;
-
     // Move o cursor para a próxima letra no input
     // Guarda o input dado
     // Verifica tentativas
@@ -128,6 +126,7 @@ public class GameController {
 
         //textField.textProperty().setValue(textField.getText().toUpperCase());
         textField.setText(textField.getText().toUpperCase());
+
         //Impede de escrever mais do que 1 char
         textField.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.length() > 1) {
@@ -146,7 +145,6 @@ public class GameController {
             if (currentId == difficulty - 1) return;
             TextField gotoText = (TextField) gBox.getChildren().get(currentId + 1);
             focusText(gotoText);
-
         }
 
         if (isAllTextFieldsFilled(gBox) && attempts <= difficulty) {
@@ -156,12 +154,11 @@ public class GameController {
 
     @FXML
     void submitWord() {
-
         for (int i = 0; i < difficulty; i++) {
             TextField currentField = (TextField) inputBox.getChildren().get(i);
             String input = currentField.getText();
             System.out.println(input);
-            entry = entry + input;
+            entry = entry.concat(input);
         }
         System.out.println("Tentativa: " + entry);
 
@@ -191,7 +188,6 @@ public class GameController {
 
         //Instanciar os labels
         for (int i = 0; i < difficulty; i++) {
-
             String entryChar = String.valueOf(entry.charAt(i));
             Label label = new Label();
             label.setId(String.valueOf(i));
@@ -215,8 +211,7 @@ public class GameController {
                             " -fx-pref-height: 50px;" +
                             " -fx-font-weight: bold");
                     correctChars++;
-                }
-                else {
+                } else {
                     System.out.println("Contém a letra");
                     label.setStyle(" -fx-background-color: " + yellowBox + ";" +
                             " -fx-font-family: Georgia;" +
@@ -231,11 +226,10 @@ public class GameController {
             gBox.getChildren().add(label);
 
             if (correctChars == difficulty) {
+                //endOfGame();
                 gameWon = true;
             }
-
             correctChars = 0;
-
         }
     }
 
@@ -308,7 +302,7 @@ public class GameController {
         try {
             int lineCount = 0;
 
-            File wordFile = new File("wordlists\\" + path);
+            File wordFile = new File(currDir + "/wordlists/" + path);
 
             FileReader readStream = new FileReader(wordFile);
             BufferedReader bufferedReader = new BufferedReader(readStream);
@@ -320,8 +314,7 @@ public class GameController {
             readStream.close();
 
             return lineCount;
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
         return 0;
@@ -361,7 +354,7 @@ public class GameController {
 
             int lineCount = countFileSize(wordFilename);
 
-            File wordFile = new File("wordlists\\" + wordFilename);
+            File wordFile = new File(currDir + "/wordlists/" + wordFilename);
 
             FileReader readStream2 = new FileReader(wordFile);
             BufferedReader bufferedReader2 = new BufferedReader(readStream2);
@@ -388,7 +381,7 @@ public class GameController {
     boolean doesWordExist(String word) {
         try {
             System.out.println("verificando...");
-            File file = new File("wordlists\\" + wordFilename);
+            File file = new File(currDir + "/wordlists/" + wordFilename);
 
             FileReader readStream = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(readStream);
@@ -407,11 +400,9 @@ public class GameController {
             bufferedReader.close();
             readStream.close();
 
-
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
         return false;
     }
-
 }

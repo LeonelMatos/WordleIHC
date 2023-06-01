@@ -32,11 +32,11 @@ public class ProfileController {
     private Button btnExit;
 
     //Usado para saber qual remover quando pedido
+    @FXML
     private HBox currentProfileBox;
 
     @FXML
     void instantiateProfileBox() {
-
         newProfileButton.setDisable(true);
         //Set ProfileBox
         profileCounter++;
@@ -53,7 +53,6 @@ public class ProfileController {
         profileHolder.getChildren().add(index, profileBox);
 
         //Set ColorId
-
         Circle colorId = new Circle(30, Color.color(generateColor(), generateColor(), generateColor()));
         profileBox.getChildren().add(colorId);
 
@@ -72,17 +71,13 @@ public class ProfileController {
 
         //Set ProfileId
         Label title = new Label("Perfil " + profileCounter);
-        title.setStyle(" -fx-font-family: Georgia;" +
-                " -fx-font-size: 14px;" +
-                " -fx-alignment: center;" +
-                " -fx-font-weight: bold");
+        title.setStyle(" -fx-font-family: Georgia;" + " -fx-font-size: 14px;" + " -fx-alignment: center;" + " -fx-font-weight: bold");
         //HBox.setHgrow(title, Priority.SOMETIMES);
         vBox1.getChildren().add(title);
 
         TextField textField = new TextField();
         textField.setText("nome");
-        textField.setStyle(" -fx-font-family: Georgia;" +
-                " -fx-font-size: 18px");
+        textField.setStyle(" -fx-font-family: Georgia;" + " -fx-font-size: 18px");
         vBox1.getChildren().add(textField);
 
         //Set Name
@@ -97,19 +92,13 @@ public class ProfileController {
 
         //Set Edit
         Button create = new Button("Criar");
-        create.setStyle(" -fx-background-color: #EEEEEE;" +
-                " -fx-font-family: Georgia;" +
-                " -fx-font-size: 14px;" +
-                " -fx-font-weight: bold");
+        create.setStyle(" -fx-background-color: #EEEEEE;" + " -fx-font-family: Georgia;" + " -fx-font-size: 14px;" + " -fx-font-weight: bold");
         create.setOnAction(submitProfilePrompt);
         vBox2.getChildren().add(create);
 
         //X Edit
         Button remove = new Button("X");
-        remove.setStyle(" -fx-background-color: #FF6962;" +
-                " -fx-font-family: Georgia;" +
-                " -fx-font-size: 14px;" +
-                " -fx-font-weight: bold");
+        remove.setStyle(" -fx-background-color: #FF6962;" + " -fx-font-family: Georgia;" + " -fx-font-size: 14px;" + " -fx-font-weight: bold");
         remove.setOnAction(removeProfilePrompt);
         vBox2.getChildren().add(remove);
 
@@ -121,16 +110,12 @@ public class ProfileController {
         profileHolder.getChildren().remove(currentProfileBox);
         profileCounter--;
 
-        if (profileHolder.getChildren().size() < 3)
-            newProfileButton.setDisable(false);
+        if (profileHolder.getChildren().size() < 3) newProfileButton.setDisable(false);
     };
 
     EventHandler<ActionEvent> submitProfilePrompt = actionEvent -> {
-
         //Verifica se existem demasiados perfis. 4+ pode partir a view
-        if (profileHolder.getChildren().size() < 3)
-            newProfileButton.setDisable(false);
-
+        if (profileHolder.getChildren().size() < 3) newProfileButton.setDisable(false);
 
         VBox vbox1 = (VBox) currentProfileBox.getChildren().get(1);
         TextField nameField = (TextField) vbox1.getChildren().get(1);
@@ -138,20 +123,13 @@ public class ProfileController {
 
         vbox1.getChildren().remove(1);
         Label nameLabel = new Label(name);
-        nameLabel.setStyle(" -fx-font-family: Georgia;" +
-                " -fx-font-size: 24px;" +
-                " -fx-alignment: center;" +
-                " -fx-font-weight: bold");
+        nameLabel.setStyle(" -fx-font-family: Georgia;" + " -fx-font-size: 24px;" + " -fx-alignment: center;" + " -fx-font-weight: bold");
         vbox1.getChildren().add(nameLabel);
-
 
         VBox vbox2 = (VBox) currentProfileBox.getChildren().get(2);
         vbox2.getChildren().remove(0);
         Button create = new Button("Editar");
-        create.setStyle(" -fx-background-color: #EEEEEE;" +
-                " -fx-font-family: Georgia;" +
-                " -fx-font-size: 14px;" +
-                " -fx-font-weight: bold");
+        create.setStyle(" -fx-background-color: #EEEEEE;" + " -fx-font-family: Georgia;" + " -fx-font-size: 14px;" + " -fx-font-weight: bold");
         vbox2.getChildren().add(0, create);
 
         Button removeButton = (Button) vbox2.getChildren().get(1);
@@ -168,7 +146,6 @@ public class ProfileController {
         Random random = new Random();
         double min = 0.4;  // Minimum component value
         double max = 0.8;  // Maximum component value
-
         double range = max - min;
         double value = random.nextDouble() * range + min;
         return Math.min(1.0, value);
@@ -182,7 +159,6 @@ public class ProfileController {
         currentStage.setTitle("WordleIHC");
         currentStage.setScene(newScene);
     }
-
 }
 
 

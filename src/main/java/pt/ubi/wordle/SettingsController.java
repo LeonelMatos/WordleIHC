@@ -13,7 +13,8 @@ import java.util.ArrayList;
 
 public class SettingsController {
 
-    String filename = "settings.txt";
+    private final String currDir = System.getProperty("user.dir");
+    String filename = currDir + "/settings.txt";
 
     @FXML
     private Button btnExit;
