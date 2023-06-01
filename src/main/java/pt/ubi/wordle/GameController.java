@@ -156,7 +156,7 @@ public class GameController {
 
     @FXML
     void submitWord() {
-        //falta verifica se a palavra existe
+
         for (int i = 0; i < difficulty; i++) {
             TextField currentField = (TextField) inputBox.getChildren().get(i);
             String input = currentField.getText();
@@ -372,7 +372,7 @@ public class GameController {
             for (int i = 0; i < randomLine; i++)
                 bufferedReader2.readLine();
 
-            word = bufferedReader2.readLine();
+            word = bufferedReader2.readLine().toLowerCase();
 
             bufferedReader2.close();
             readStream2.close();

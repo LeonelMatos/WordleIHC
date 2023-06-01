@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class StartController {
 
-    char difficulty = '5';
+    char difficulty;
     String filename = "settings.txt";
 
     @FXML
@@ -67,6 +67,7 @@ public class StartController {
     void selectDifficulty(ActionEvent event) {
         MenuItem item = (MenuItem) event.getSource();
         difficulty = item.getText().charAt(0);
+        writeDifficulty();
         System.out.println("Changed difficulty to " + difficulty);
     }
 
