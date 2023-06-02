@@ -298,6 +298,8 @@ public class ProfileController {
 
             output = output + hexToRGBString(colorId.getFill().toString());
 
+            output = output + ";0";
+
             FileWriter writeStream = new FileWriter(file);
 
             for (String lines : fileBuffer) {
