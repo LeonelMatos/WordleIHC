@@ -37,6 +37,8 @@ public class GameController {
     int difficulty = 5;
     int attempts = 1;
 
+    String currentProfile = "";
+
     @FXML
     private ImageView currentLanguage;
     @FXML
@@ -47,6 +49,8 @@ public class GameController {
     private HBox inputBox;
     @FXML
     private VBox gameBox;
+    @FXML
+    private Label profileLabel;
 
     @FXML
     void initialize() {
@@ -62,6 +66,8 @@ public class GameController {
             case "fr" -> currentLanguage.setImage(new Image("france.png"));
             default -> System.out.println("Image not found");
         }
+
+        profileLabel.setText(readProfileName());
 
         //Instanciar o gamebox
         HBox gBox = new HBox();
@@ -375,6 +381,34 @@ public class GameController {
             System.err.println(e.getMessage());
         }
         return word;
+    }
+
+    String readProfileName() {
+        String name = "";
+        try {
+            File file = new File(filename);
+
+            FileReader readStream = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(readStream);
+
+            ArrayList<String> fileBuffer = new ArrayList<>();
+            String line;
+
+            while ((line = bufferedReader.readLine()) != null) {
+                fileBuffer.add(line);
+            }
+            bufferedReader.close();
+            readStream.close();
+
+            for (String s : fileBuffer) {
+                if (s.contains(">")) {
+                    name = s.substring(1).split(";")[0];
+                }
+            }
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+        return name;
     }
 
     boolean doesWordExist(String word) {

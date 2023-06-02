@@ -18,8 +18,9 @@
 
 - [x] Criar menu perfis
 - [ ] Criar perfis com password
-- [ ] Encriptar passwords dos perfis
+- [ ] Encriptar passwords dos perfis (saltar este)
 - [ ] Editar perfis
+- [x] Selecionar perfil
 
 ## Leaderboard
 

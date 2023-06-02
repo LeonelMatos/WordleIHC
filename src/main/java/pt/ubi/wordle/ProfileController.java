@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -92,6 +93,8 @@ public class ProfileController {
         profileBox.setPadding(new Insets(20));
         profileHolder.getChildren().add(index, profileBox);
 
+        currentProfileBox.setOnMouseClicked(selectProfileEvent);
+
         //Set ColorId
         Circle colorId = new Circle(30, Color.color(generateColor(), generateColor(), generateColor()));
         profileBox.getChildren().add(colorId);
@@ -136,7 +139,7 @@ public class ProfileController {
         System.out.println("Profile:: Name: " + name + " Id: " + circleId);
         newProfileButton.setDisable(true);
         //Set ProfileBox
-        profileCounter++;
+        profileCounter++;  //TODO BUG : o botão de criar novo perfil nem sempre funciona. Descobrir porquê
         HBox profileBox = new HBox();
         currentProfileBox = profileBox;
         profileBox.setAlignment(Pos.CENTER);
@@ -148,6 +151,8 @@ public class ProfileController {
         profileBox.setSpacing(10);
         profileBox.setPadding(new Insets(20));
         profileHolder.getChildren().add(index, profileBox);
+
+        currentProfileBox.setOnMouseClicked(selectProfileEvent);
 
         //Set ColorId
         Circle colorId = new Circle(30, Color.valueOf(circleId));
@@ -191,6 +196,7 @@ public class ProfileController {
     }
 
     // Actions para editar/submeter/remover
+
     EventHandler<ActionEvent> removeProfile = actionEvent -> {
 
         try {
@@ -242,7 +248,8 @@ public class ProfileController {
         profileHolder.getChildren().remove(currentProfileBox);
         profileCounter--;
 
-        if (profileHolder.getChildren().size() < 3) newProfileButton.setDisable(false);
+        if (profileCounter < 3) newProfileButton.setDisable(false);
+        System.out.println("Counter:::: " + profileCounter);
     };
 
     EventHandler<ActionEvent> submitProfilePrompt = actionEvent -> {
@@ -309,6 +316,70 @@ public class ProfileController {
         profileCounter--;
         newProfileButton.setDisable(false);
     };
+
+    EventHandler<MouseEvent> selectProfileEvent = mouseEvent -> {
+        try {
+            File file = new File(filename);
+
+            FileReader readStream = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(readStream);
+
+            ArrayList<String> fileBuffer = new ArrayList<>();
+            String line;
+
+            while ((line = bufferedReader.readLine()) != null) {
+                fileBuffer.add(line);
+            }
+            bufferedReader.close();
+            readStream.close();
+
+            currentProfileBox = (HBox) mouseEvent.getSource();
+
+            VBox vbox1 = (VBox) currentProfileBox.getChildren().get(1);
+            Label nameLabel = (Label) vbox1.getChildren().get(1);
+
+            String name = nameLabel.getText();
+
+            int oldIndex = 0;
+            int newIndex = 0;
+            for (int i = 0; i < fileBuffer.size(); i++) {
+                if (fileBuffer.get(i).contains(">")) {
+                    oldIndex = i;
+                }
+                else if (fileBuffer.get(i).contains(name)) {
+                    newIndex = i;
+                }
+            }
+            //Retira a seleção de perfil
+            if (oldIndex != 0) {
+                String oldSelectedProfile = fileBuffer.get(oldIndex).substring(1);
+                fileBuffer.set(oldIndex, oldSelectedProfile);
+            }
+
+            //Adiciona a seleção de perfil
+            if (newIndex != 0 && !fileBuffer.get(5).isEmpty()) {
+                String newSelectedProfile = ">" + fileBuffer.get(newIndex);
+                fileBuffer.set(newIndex, newSelectedProfile);
+            }
+            else {
+                String newSelectedProfile = ">" + fileBuffer.get(5);
+                fileBuffer.set(5, newSelectedProfile);
+            }
+
+            FileWriter writeStream = new FileWriter(file);
+
+            for (String lines : fileBuffer) {
+                writeStream.write(lines);
+                writeStream.write("\n");
+            }
+            writeStream.close();
+            handleExitButton();
+        }
+        catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    };
+
 
     double generateColor() {
         Random random = new Random();

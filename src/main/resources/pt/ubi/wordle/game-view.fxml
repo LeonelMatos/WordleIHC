@@ -40,7 +40,7 @@
             </HBox>
          </right>
          <center>
-            <Label text="Perfil nome" BorderPane.alignment="CENTER">
+            <Label fx:id="profileLabel" text="Perfil nome" BorderPane.alignment="CENTER">
                <font>
                   <Font name="Georgia Bold" size="24.0" />
                </font>
