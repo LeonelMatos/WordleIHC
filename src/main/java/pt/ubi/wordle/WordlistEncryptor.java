@@ -13,7 +13,7 @@ public class WordlistEncryptor {
 
     public static void main(String[] args) throws Exception {
         for (int i = 3; i < 8; i++) {
-            for (int j = 0; j < 3; j++){
+            for (int j = 0; j < 3; j++) {
                 String inputFile = currDir + "/wordlists/" + i + "-" + language[j] + ".txt.old";
                 String outputFile = currDir + "/wordlists/" + i + "-" + language[j] + ".txt";
 

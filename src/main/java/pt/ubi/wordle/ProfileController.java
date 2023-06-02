@@ -41,7 +41,7 @@ public class ProfileController {
     private HBox currentProfileBox;
 
     @FXML
-    void initialize () {
+    void initialize() {
         try {
             File file = new File(filename);
 
@@ -69,8 +69,7 @@ public class ProfileController {
 
                 instantiateProfileBox(values[0], values[1]);
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.err.println(e.getMessage());
         }
     }
@@ -140,6 +139,7 @@ public class ProfileController {
         newProfileButton.setDisable(true);
         //Set ProfileBox
         profileCounter++;  //TODO BUG : o botão de criar novo perfil nem sempre funciona. Descobrir porquê
+        if (profileCounter > 0) newProfileButton.setDisable(false); //TODO: Correção do bug??
         HBox profileBox = new HBox();
         currentProfileBox = profileBox;
         profileBox.setAlignment(Pos.CENTER);
@@ -240,8 +240,7 @@ public class ProfileController {
             }
             writeStream.close();
 
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.err.println(e.getMessage());
         }
 
@@ -304,9 +303,8 @@ public class ProfileController {
             }
             writeStream.write(output);
             writeStream.close();
-        }
-        catch (IOException e) {
-            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
         }
 
     };
@@ -345,8 +343,7 @@ public class ProfileController {
             for (int i = 0; i < fileBuffer.size(); i++) {
                 if (fileBuffer.get(i).contains(">")) {
                     oldIndex = i;
-                }
-                else if (fileBuffer.get(i).contains(name)) {
+                } else if (fileBuffer.get(i).contains(name)) {
                     newIndex = i;
                 }
             }
@@ -360,8 +357,7 @@ public class ProfileController {
             if (newIndex != 0 && !fileBuffer.get(5).isEmpty()) {
                 String newSelectedProfile = ">" + fileBuffer.get(newIndex);
                 fileBuffer.set(newIndex, newSelectedProfile);
-            }
-            else {
+            } else {
                 String newSelectedProfile = ">" + fileBuffer.get(5);
                 fileBuffer.set(5, newSelectedProfile);
             }
@@ -374,9 +370,8 @@ public class ProfileController {
             }
             writeStream.close();
             handleExitButton();
-        }
-        catch (IOException e) {
-            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
         }
     };
 

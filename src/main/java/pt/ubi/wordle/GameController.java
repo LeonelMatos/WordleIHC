@@ -96,9 +96,8 @@ public class GameController {
         writeAttempts();
         try {
             handleFinalView();
-        }
-        catch (IOException e) {
-            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
         }
     }
 
@@ -229,7 +228,7 @@ public class GameController {
                             " -fx-pref-width: 50px;" +
                             " -fx-pref-height: 50px;" +
                             " -fx-font-weight: bold");
-                    }
+                }
             }
 
             gBox.getChildren().add(label);
