@@ -39,7 +39,7 @@
                </font>
             </Label>
             <Separator prefWidth="200.0" style="-fx-background-color: #333333;" />
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" VBox.vgrow="SOMETIMES">
+            <HBox alignment="CENTER" prefHeight="0.0" prefWidth="360.0" spacing="20.0" VBox.vgrow="SOMETIMES">
                <children>
                   <Button fx:id="bntPlay" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handlePlayButton" style="-fx-background-color: #ACB0F2;" text="Jogar" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="SOMETIMES">
                      <font>
@@ -60,6 +60,11 @@
                   </SplitMenuButton>
                </children>
             </HBox>
+            <Button mnemonicParsing="false" onAction="#handleHelpButton" style="-fx-background-color: acb0f2;" text="Ajuda" textFill="WHITE">
+               <font>
+                  <Font name="Georgia Bold" size="18.0" />
+               </font>
+            </Button>
             <Button fx:id="bntSetting1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleExitButton" style="-fx-background-color: ff6962;" text="Sair" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Georgia Bold" size="18.0" />

@@ -120,13 +120,13 @@ public class ProfileController {
         textField.setStyle(" -fx-font-family: Georgia;" + " -fx-font-size: 18px");
         vBox1.getChildren().add(textField);
 
-        //Set Edit
+        //Set Create
         Button create = new Button("Criar");
         create.setStyle(" -fx-background-color: #EEEEEE;" + " -fx-font-family: Georgia;" + " -fx-font-size: 14px;" + " -fx-font-weight: bold");
         create.setOnAction(submitProfilePrompt);
         vBox2.getChildren().add(create);
 
-        //X Edit
+        //Set X
         Button remove = new Button("X");
         remove.setStyle(" -fx-background-color: #FF6962;" + " -fx-font-family: Georgia;" + " -fx-font-size: 14px;" + " -fx-font-weight: bold");
         remove.setOnAction(removeProfilePrompt);
@@ -137,8 +137,8 @@ public class ProfileController {
     void instantiateProfileBox(String name, String circleId) {
         newProfileButton.setDisable(true);
         //Set ProfileBox
-        profileCounter++;  //TODO BUG : o botão de criar novo perfil nem sempre funciona. Descobrir porquê
-        if (profileCounter >= 3) newProfileButton.setDisable(true); //TODO: Correção do bug??
+        profileCounter++;
+        if (profileCounter >= 3) newProfileButton.setDisable(true);
         System.out.println("Profile " + profileCounter +":: Name: " + name + " Id: " + circleId);
         HBox profileBox = new HBox();
         currentProfileBox = profileBox;

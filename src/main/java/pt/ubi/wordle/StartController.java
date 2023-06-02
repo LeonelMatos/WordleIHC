@@ -48,6 +48,15 @@ public class StartController {
     }
 
     @FXML
+    void handleHelpButton() throws IOException {
+        Stage currentStage = (Stage) bntProfile.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("help-view.fxml"));
+        Scene newScene = new Scene(fxmlLoader.load());
+        currentStage.setTitle("Wordle Help");
+        currentStage.setScene(newScene);
+    }
+
+    @FXML
     protected void handleProfileButton() throws IOException {
         Stage currentStage = (Stage) bntProfile.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("profile-view.fxml"));
