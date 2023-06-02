@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.BufferedReader;
@@ -19,6 +20,8 @@ public class FinalController {
     private final String currDir = System.getProperty("user.dir");
     String filename = currDir + "/settings.txt";
 
+    int points = Integer.parseInt(readPoints());
+
     @FXML
     Label success;
     @FXML
@@ -28,7 +31,10 @@ public class FinalController {
     @FXML
     Label attempts;
     @FXML
-    Label points;
+    Label pointsLabel;
+    @FXML
+    VBox profileHolder;
+
 
     @FXML
     void handleExitButton() throws IOException {
@@ -63,6 +69,21 @@ public class FinalController {
             attempts.setText(nAttempts + " tentativa\n" + emoji);
         else
             attempts.setText(nAttempts + " tentativas\n" + emoji);
+
+        pointsLabel.setText(points + " pontos");
+
+        int profileCount = getProfileCount();
+        //Cria novos labels na scoreboard
+        for (int i = 0; i < profileCount; i++) {
+            Label profileLabel = new Label();
+            profileLabel.setStyle("-fx-font-family: Georgia;" +
+                    "-fx-font-size: 18px;" +
+                    "-fx-alignment: center;" +
+                    "-fx-font-weight: bold");
+            profileLabel.setText(readStats(i));
+            profileHolder.getChildren().add(profileLabel);
+
+        }
     }
 
     String readWord() {
@@ -141,5 +162,60 @@ public class FinalController {
             System.err.println(e.getMessage());
         }
         return "";
+    }
+
+    String readStats (int index) {
+        try {
+
+            File file = new File(filename);
+
+            FileReader readStream = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(readStream);
+
+            ArrayList<String> fileBuffer = new ArrayList<>();
+            String line = "";
+
+            for (int i = 0; i <= index; i++) {
+                line = bufferedReader.readLine();
+            }
+            if (line.contains(">"))
+                line = line.substring(1);
+
+            String[] values = line.split(";");
+
+            String separator = "        ";
+
+            return "Perfil " + index + separator + values[0] + separator + values[2];
+
+        }
+        catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+
+        return "";
+    }
+
+    int getProfileCount () {
+        try {
+            int count = 0;
+
+            File file = new File(filename);
+
+            FileReader readStream = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(readStream);
+
+            ArrayList<String> fileBuffer = new ArrayList<>();
+            String line;
+
+            while ((line = bufferedReader.readLine()) != null) {
+                count++;
+            }
+
+            return count - 5;
+        }
+        catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+        return 0;
     }
 }

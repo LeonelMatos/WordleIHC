@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="500.0" spacing="20.0" style="-fx-background-color: #DDDDDD;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ubi.wordle.FinalController">
+<VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="500.0" spacing="20.0" style="-fx-background-color: #DDDDDD;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ubi.wordle.FinalController">
    <children>
       <BorderPane>
          <center>
@@ -29,13 +29,13 @@
             <Font name="Georgia Bold" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="points" text="+14 points">
+      <Label fx:id="pointsLabel" text="+14 points">
          <font>
             <Font name="Georgia Bold" size="24.0" />
          </font>
       </Label>
       <Separator prefWidth="200.0" style="-fx-background-color: #333333;" />
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="50.0" style="-fx-background-color: #333333;">
+      <VBox fx:id="profileHolder" alignment="CENTER" prefHeight="200.0" prefWidth="50.0" style="-fx-background-color: #333333;">
          <children>
             <Label alignment="CENTER" layoutX="226.0" layoutY="101.0" maxWidth="1.7976931348623157E308" text="Perfil 1               Leonel               14pts" textFill="#dddddd">
                <font>

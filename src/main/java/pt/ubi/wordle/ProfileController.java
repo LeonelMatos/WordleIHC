@@ -136,7 +136,7 @@ public class ProfileController {
     }
 
     void instantiateProfileBox(String name, String circleId) {
-        newProfileButton.setDisable(true);
+        newProfileButton.setDisable(false);
         //Set ProfileBox
         profileCounter++;
         if (profileCounter >= 3) newProfileButton.setDisable(true);
@@ -184,6 +184,7 @@ public class ProfileController {
         Button edit = new Button("Editar");
         edit.setStyle(" -fx-background-color: #EEEEEE;" + " -fx-font-family: Georgia;" + " -fx-font-size: 14px;" + " -fx-font-weight: bold");
         edit.setOnAction(editProfile);
+
         vBox2.getChildren().add(0, edit);
 
         //X
@@ -433,7 +434,6 @@ public class ProfileController {
         }
 
         submitButton.setOnAction(submitProfileEdit);
-
         VBox vbox1 = (VBox) currentProfileBox.getChildren().get(1);
         Label nameLabel = (Label) vbox1.getChildren().get(1);
         String name = nameLabel.getText();
@@ -443,8 +443,6 @@ public class ProfileController {
 
         nameField.setStyle(" -fx-font-family: Georgia;" + " -fx-font-size: 18px");
         vbox1.getChildren().add(nameField);
-
-
     };
 
     EventHandler<ActionEvent> removeProfilePrompt = actionEvent -> {
