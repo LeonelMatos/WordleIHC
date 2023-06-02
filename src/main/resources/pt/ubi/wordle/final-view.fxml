@@ -12,24 +12,24 @@
    <children>
       <BorderPane>
          <center>
-            <Label text="GG EZ" BorderPane.alignment="CENTER">
+            <Label fx:id="success" text="Bom Jogo!" BorderPane.alignment="CENTER">
                <font>
                   <Font name="Georgia Bold" size="36.0" />
                </font>
             </Label>
          </center>
       </BorderPane>
-      <Label style="-fx-background-color: acb0f2;" text="Word">
+      <Label fx:id="word" style="-fx-background-color: acb0f2;" text="Word">
          <font>
             <Font name="Georgia Bold" size="36.0" />
          </font>
       </Label>
-      <Label text="5 tentativas">
+      <Label fx:id="attempts" alignment="CENTER" text="5 tentativas" textAlignment="CENTER">
          <font>
             <Font name="Georgia Bold" size="18.0" />
          </font>
       </Label>
-      <Label text="+14 points">
+      <Label fx:id="points" text="+14 points">
          <font>
             <Font name="Georgia Bold" size="24.0" />
          </font>
@@ -39,12 +39,12 @@
          <children>
             <Label alignment="CENTER" layoutX="226.0" layoutY="101.0" maxWidth="1.7976931348623157E308" text="Perfil 1               Leonel               14pts" textFill="#dddddd">
                <font>
-                  <Font name="Georgia" size="14.0" />
+                  <Font name="Georgia" size="18.0" />
                </font>
             </Label>
             <Label alignment="CENTER" layoutX="10.0" layoutY="102.0" maxWidth="1.7976931348623157E308" text="Perfil 2                João                   0pts" textFill="#dddddd">
                <font>
-                  <Font name="Georgia" size="14.0" />
+                  <Font name="Georgia" size="18.0" />
                </font>
             </Label>
          </children>

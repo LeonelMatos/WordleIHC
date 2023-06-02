@@ -31,11 +31,6 @@
                         <Image url="@../../../portugal.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="btnProfile" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleProfileButton" style="-fx-background-color: #ACB0F2;" text="Perfil" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font name="Georgia Bold" size="18.0" />
-                     </font>
-                  </Button>
                </children>
             </HBox>
          </right>

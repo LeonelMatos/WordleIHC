@@ -48,11 +48,11 @@
                   </Button>
                   <SplitMenuButton alignment="CENTER" mnemonicParsing="false" popupSide="RIGHT" style="-fx-background-color: #AAAAAA;" text="Dificuldade" textAlignment="CENTER">
                      <items>
-                        <MenuItem mnemonicParsing="false" onAction="#selectDifficulty" text="3 palavras" />
-                        <MenuItem mnemonicParsing="false" onAction="#selectDifficulty" text="4 palavras" />
-                        <MenuItem mnemonicParsing="false" onAction="#selectDifficulty" text="5 palavras" />
-                        <MenuItem mnemonicParsing="false" onAction="#selectDifficulty" text="6 palavras" />
-                        <MenuItem mnemonicParsing="false" onAction="#selectDifficulty" text="7 palavras" />
+                        <MenuItem mnemonicParsing="false" onAction="#selectDifficulty" text="3 letras" />
+                        <MenuItem mnemonicParsing="false" onAction="#selectDifficulty" text="4 letras" />
+                        <MenuItem mnemonicParsing="false" onAction="#selectDifficulty" text="5 letras" />
+                        <MenuItem mnemonicParsing="false" onAction="#selectDifficulty" text="6 letras" />
+                        <MenuItem mnemonicParsing="false" onAction="#selectDifficulty" text="7 letras" />
                      </items>
                      <font>
                         <Font name="Georgia" size="14.0" />
