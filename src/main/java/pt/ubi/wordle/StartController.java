@@ -87,7 +87,7 @@ public class StartController {
             if (file.createNewFile()) {
                 System.out.println("Created file " + filename);
                 FileWriter writer = new FileWriter(file);
-                writer.write("pt\n5\nword\n0\n.");
+                writer.write("pt\n5\nword\n0\n0");
                 writer.close();
             }
         } catch (IOException e) {

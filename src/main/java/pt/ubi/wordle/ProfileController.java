@@ -21,6 +21,7 @@ import javafx.scene.layout.Priority;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.ExecutionException;
 
 public class ProfileController {
 
@@ -180,9 +181,10 @@ public class ProfileController {
         nameLabel.setStyle(" -fx-font-family: Georgia;" + " -fx-font-size: 24px;" + " -fx-alignment: center;" + " -fx-font-weight: bold");
         vBox1.getChildren().add(nameLabel);
 
-        Button create = new Button("Editar");
-        create.setStyle(" -fx-background-color: #EEEEEE;" + " -fx-font-family: Georgia;" + " -fx-font-size: 14px;" + " -fx-font-weight: bold");
-        vBox2.getChildren().add(0, create);
+        Button edit = new Button("Editar");
+        edit.setStyle(" -fx-background-color: #EEEEEE;" + " -fx-font-family: Georgia;" + " -fx-font-size: 14px;" + " -fx-font-weight: bold");
+        edit.setOnAction(editProfile);
+        vBox2.getChildren().add(0, edit);
 
         //X
         Button remove = new Button("X");
@@ -271,6 +273,7 @@ public class ProfileController {
         vbox2.getChildren().add(0, create);
 
         Button removeButton = (Button) vbox2.getChildren().get(1);
+        removeButton.setDisable(false);
         removeButton.setOnAction(removeProfile);
 
         try {
@@ -309,8 +312,137 @@ public class ProfileController {
 
     };
 
+    EventHandler<ActionEvent> submitProfileEdit = actionEvent -> {
+
+        VBox vbox1 = (VBox) currentProfileBox.getChildren().get(1);
+        TextField nameField = (TextField) vbox1.getChildren().get(1);
+        String name = nameField.getText();
+
+        vbox1.getChildren().remove(1);
+        Label nameLabel = new Label(name);
+        nameLabel.setStyle(" -fx-font-family: Georgia;" + " -fx-font-size: 24px;" + " -fx-alignment: center;" + " -fx-font-weight: bold");
+        vbox1.getChildren().add(nameLabel);
+
+        VBox vbox2 = (VBox) currentProfileBox.getChildren().get(2);
+        vbox2.getChildren().remove(0);
+        Button create = new Button("Editar");
+        create.setStyle(" -fx-background-color: #EEEEEE;" + " -fx-font-family: Georgia;" + " -fx-font-size: 14px;" + " -fx-font-weight: bold");
+        vbox2.getChildren().add(0, create);
+
+        Button removeButton = (Button) vbox2.getChildren().get(1);
+        removeButton.setDisable(false);
+
+        //Volta a passar por todos os outros perfis e permite-os a editar
+        for (int i = 0; i < profileHolder.getChildren().size(); i++) {
+            HBox IProfile = (HBox) profileHolder.getChildren().get(i);
+            VBox IVbox2 = (VBox) IProfile.getChildren().get(2);
+
+            Button IEditButton = (Button) IVbox2.getChildren().get(0);
+            if (IEditButton.getText().equals("Enviar")) continue;
+
+            IEditButton.setDisable(false);
+            Button IRemoveButton = (Button) IVbox2.getChildren().get(1);
+            IRemoveButton.setDisable(false);
+        }
+
+        Circle colorId = (Circle) currentProfileBox.getChildren().get(0);
+
+        try {
+            File file = new File(filename);
+
+            FileReader readStream = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(readStream);
+
+            ArrayList<String> fileBuffer = new ArrayList<>();
+            String line;
+
+            while ((line = bufferedReader.readLine()) != null) {
+                fileBuffer.add(line);
+            }
+            bufferedReader.close();
+            readStream.close();
+
+
+            int index = 0;
+            //Encontra o perfil a modificar se tiverem iguais colorIds
+            for (int i = 0; i < fileBuffer.size(); i++) {
+                if (fileBuffer.get(i).contains(hexToRGBString(colorId.getFill().toString()))) {
+                    index = i;
+                }
+            }
+
+            String output = "";
+            if (fileBuffer.get(index).contains(">")) {
+                output = fileBuffer.get(index).substring(1);
+            }
+            else output = fileBuffer.get(index);
+
+            output = fileBuffer.get(index);
+
+            String[] values = output.split(";");
+
+            output = name + ";" + values[1] + ";" + values[2];
+
+            if (fileBuffer.get(index).contains(hexToRGBString(colorId.getFill().toString()))) {
+                output = ">" + output;
+            }
+
+            fileBuffer.set(index, output);
+
+            FileWriter writeStream = new FileWriter(file);
+
+            for (String lines : fileBuffer) {
+                writeStream.write(lines);
+                writeStream.write("\n");
+            }
+            writeStream.close();
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+
+    };
+
+
     EventHandler<ActionEvent> editProfile = actionEvent -> {
-        //Para continuar....
+
+        Button sourceButton = (Button) actionEvent.getSource();
+        VBox sourceBox = (VBox) sourceButton.getParent();
+        currentProfileBox = (HBox) sourceBox.getParent();
+
+        //Impedir de eliminar enquanto edita
+        VBox vbox2 = (VBox) currentProfileBox.getChildren().get(2);
+        Button removeButton = (Button) vbox2.getChildren().get(1);
+        removeButton.setDisable(true);
+
+        Button submitButton = (Button) vbox2.getChildren().get(0);
+        submitButton.setText("Enviar");
+
+        //Impedir de editar outros enquanto edita um
+        for (int i = 0; i < profileHolder.getChildren().size(); i++) {
+            HBox IProfile = (HBox) profileHolder.getChildren().get(i);
+            VBox IVbox2 = (VBox) IProfile.getChildren().get(2);
+
+            Button IEditButton = (Button) IVbox2.getChildren().get(0);
+            if (IEditButton.getText().equals("Enviar")) continue;
+
+            IEditButton.setDisable(true);
+            Button IRemoveButton = (Button) IVbox2.getChildren().get(1);
+            IRemoveButton.setDisable(true);
+        }
+
+        submitButton.setOnAction(submitProfileEdit);
+
+        VBox vbox1 = (VBox) currentProfileBox.getChildren().get(1);
+        Label nameLabel = (Label) vbox1.getChildren().get(1);
+        String name = nameLabel.getText();
+
+        vbox1.getChildren().remove(1);
+        TextField nameField = new TextField(name);
+
+        nameField.setStyle(" -fx-font-family: Georgia;" + " -fx-font-size: 18px");
+        vbox1.getChildren().add(nameField);
+
+
     };
 
     EventHandler<ActionEvent> removeProfilePrompt = actionEvent -> {
@@ -374,7 +506,7 @@ public class ProfileController {
             }
             writeStream.close();
             handleExitButton();
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.err.println(e.getMessage());
         }
     };

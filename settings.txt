@@ -1,8 +1,7 @@
 pt
 4
-soar
-1
-.
->Loremi;6A906B
-Psum;6FCBC9
-Vai Ronaldo e... GOOOLOOOO!!;7981C7
+tais
+4
+10
+>>Teste;6FCBC9;0
+Carlos;7981C7;0

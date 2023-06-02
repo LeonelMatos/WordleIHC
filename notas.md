@@ -30,14 +30,16 @@
 ## GamePlay
 
 - [x] Trocar idioma (francês, inglês, português)
+- [x] Número de tentativas limitadas
 - [x] Níveis de dificuldade (3->7)
+- [x] Cálculo de pontuação
 - [x] Jogo em si
 
 ## Fim de jogo
 
 - [x] Criar scene-view de final
-- [ ] Passar palavra correta e mostrá-la no topo
-- [ ] Mostrar no número de tentativas
+- [x] Passar palavra correta e mostrá-la no topo
+- [x] Mostrar no número de tentativas
 - [ ] Mostrar pontuação e leaderboard simplificada
 
 ## Encriptação
@@ -69,7 +71,6 @@ DIFICULDADE
 PALAVRA ATUAL
 TENTATIVAS
 PONTUAÇÃO_HOLDER
-. (separador)
 >NOME|PONTUAÇÃO|COLOR_ID 
 Nome2|PONTUAÇÃO2|COLOR_ID
 

@@ -1,5 +1,6 @@
 package pt.ubi.wordle;
 
+import javax.crypto.Cipher;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -14,8 +15,8 @@ public class WordlistEncryptor {
     public static void main(String[] args) throws Exception {
         for (int i = 3; i < 8; i++) {
             for (int j = 0; j < 3; j++) {
-                String inputFile = currDir + "/wordlists/" + i + "-" + language[j] + ".txt.old";
-                String outputFile = currDir + "/wordlists/" + i + "-" + language[j] + ".txt";
+                String inputFile = currDir + "/wordlists/" + i + "-" + language[j] + ".txt";
+                String outputFile = currDir + "/wordlists/" + i + "-" + language[j] + ".txt.txt";
 
                 BufferedReader reader = new BufferedReader(new FileReader(inputFile));
 
@@ -23,7 +24,7 @@ public class WordlistEncryptor {
 
                 String line;
                 while ((line = reader.readLine()) != null) {
-                    String modifiedLine = Encryption.aesAlgorithm(line, 1);
+                    String modifiedLine = Encryption.aesAlgorithm(line, Cipher.DECRYPT_MODE);
                     assert modifiedLine != null;
                     writer.write(modifiedLine);
                     writer.newLine();

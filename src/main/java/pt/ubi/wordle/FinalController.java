@@ -46,14 +46,13 @@ public class FinalController {
         String emoji = "";
         String wordText = "";
 
-        wordText = readWord();
+        wordText = "  " + readWord() + "  ";
         word.setText(wordText);
 
         nAttempts = Integer.parseInt(readAttempts());
 
-        if (nAttempts <= wordText.length()) {
+        if (nAttempts < wordText.length() - 4) {
             emoji = "※\\(^o^)/※";
-
         }
         else  {
             successMessage = "Perdeste!";
@@ -111,6 +110,32 @@ public class FinalController {
             readStream.close();
 
             return fileBuffer.get(3);
+        }
+        catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+        return "";
+    }
+
+    String readPoints() {
+        try {
+
+            File file = new File(filename);
+
+            FileReader readStream = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(readStream);
+
+            ArrayList<String> fileBuffer = new ArrayList<>();
+            String line;
+
+            for (int i = 0; i < 5; i++) {
+                line = bufferedReader.readLine();
+                fileBuffer.add(line);
+            }
+            bufferedReader.close();
+            readStream.close();
+
+            return fileBuffer.get(4);
         }
         catch (IOException e) {
             System.err.println(e.getMessage());

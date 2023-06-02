@@ -33,11 +33,11 @@ public class GameController {
 
     boolean gameWon = false;
 
+    int missPlacedChars = 0;
     int inputFocused = 1;
     int difficulty = 5;
-    int attempts = 1;
-
-    String currentProfile = "";
+    int attempts = 0;
+    int points = -5;
 
     @FXML
     private ImageView currentLanguage;
@@ -92,6 +92,7 @@ public class GameController {
         gameWon = true;
         System.out.println("FIM DE JOGO!");
         writeAttempts();
+        writePoints();
         try {
             handleFinalView();
         } catch (IOException e) {
@@ -158,19 +159,26 @@ public class GameController {
 
     @FXML
     void submitWord() {
-        for (int i = 0; i < difficulty; i++) {
-            TextField currentField = (TextField) inputBox.getChildren().get(i);
-            String input = currentField.getText();
-            entry = entry.concat(input);
-        }
-        System.out.println("Tentativa: " + entry);
+        try {
+            for (int i = 0; i < difficulty; i++) {
+                TextField currentField = (TextField) inputBox.getChildren().get(i);
+                String input = currentField.getText();
+                entry = entry.concat(input);
+            }
+            System.out.println("Tentativa: " + entry);
 
-        if (doesWordExist(entry.toLowerCase())) {
-            instantiateInputBox();
-            clearInputBox();
-            attempts++;
+            if (doesWordExist(entry.toLowerCase())) {
+                instantiateInputBox();
+                clearInputBox();
+                attempts++;
+                if (attempts > difficulty - 1) { // Verificar se o jogo acabou
+                    endOfGameWin();
+                }
+                entry = "";
+            }
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
         }
-        entry = "";
     }
 
     void focusText(TextField gotoText) {
@@ -217,12 +225,14 @@ public class GameController {
                             " -fx-pref-width: 50px;" +
                             " -fx-pref-height: 50px;" +
                             " -fx-font-weight: bold");
+                    missPlacedChars++;
                 }
             }
 
             gBox.getChildren().add(label);
 
             if (correctChars == difficulty) {
+                points = (correctChars * 5) + missPlacedChars - (attempts + 1) * 4;
                 endOfGameWin();
             }
         }
@@ -416,12 +426,14 @@ public class GameController {
                     return true;
                 }
             }
-            System.out.println("A palavra " + "não existe (ง •̀_•́)ง");
+            System.err.println("A palavra " + "não existe (ง •̀_•́)ง");
             bufferedReader.close();
             readStream.close();
 
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.err.println(e.getMessage());
+        } catch (Exception e) {
+            System.err.println("A palavra " + "não existe (ง •̀_•́)ง");
         }
         return false;
     }
@@ -482,6 +494,37 @@ public class GameController {
             }
             writeStream.close();
             System.out.println("Made " + attempts + " attempts (づ｡◕‿‿◕｡)づ");
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    void writePoints() {
+        try {
+            File file = new File(filename);
+
+            FileReader readStream = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(readStream);
+
+            ArrayList<String> fileBuffer = new ArrayList<>();
+            String line;
+
+            while ((line = bufferedReader.readLine()) != null) {
+                fileBuffer.add(line);
+            }
+            bufferedReader.close();
+            readStream.close();
+
+            fileBuffer.set(4, String.valueOf(points));
+
+            FileWriter writeStream = new FileWriter(file);
+
+            for (String lines : fileBuffer) {
+                writeStream.write(lines);
+                writeStream.write("\n");
+            }
+            writeStream.close();
+            System.out.println("Made " + points + " points");
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="500.0" spacing="20.0" style="-fx-background-color: #DDDDDD;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ubi.wordle.HelpController">
+<VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="500.0" spacing="20.0" style="-fx-background-color: #DDDDDD;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ubi.wordle.HelpController">
     <children>
         <BorderPane>
             <center>
@@ -30,7 +30,7 @@
             <Insets bottom="50.0" />
          </VBox.margin>
         </BorderPane>
-      <Label text="O objetivo é adivinhar a palavra secreta,">
+      <Label text="O objetivo é adivinhar a palavra secreta.">
          <font>
             <Font name="Georgia Bold" size="18.0" />
          </font>
