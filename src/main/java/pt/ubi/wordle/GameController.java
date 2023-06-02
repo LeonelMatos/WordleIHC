@@ -42,8 +42,6 @@ public class GameController {
     @FXML
     private ImageView currentLanguage;
     @FXML
-    private Button btnProfile;
-    @FXML
     private Button bntExit;
     @FXML
     private HBox inputBox;
@@ -99,15 +97,6 @@ public class GameController {
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
-    }
-
-    @FXML
-    protected void handleProfileButton() throws IOException {
-        Stage currentStage = (Stage) btnProfile.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("profile-view.fxml"));
-        Scene newScene = new Scene(fxmlLoader.load());
-        currentStage.setTitle("Wordle Profile");
-        currentStage.setScene(newScene);
     }
 
     @FXML

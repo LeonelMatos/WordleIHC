@@ -135,11 +135,11 @@ public class ProfileController {
     }
 
     void instantiateProfileBox(String name, String circleId) {
-        System.out.println("Profile:: Name: " + name + " Id: " + circleId);
         newProfileButton.setDisable(true);
         //Set ProfileBox
         profileCounter++;  //TODO BUG : o botão de criar novo perfil nem sempre funciona. Descobrir porquê
-        if (profileCounter > 0) newProfileButton.setDisable(false); //TODO: Correção do bug??
+        if (profileCounter >= 3) newProfileButton.setDisable(true); //TODO: Correção do bug??
+        System.out.println("Profile " + profileCounter +":: Name: " + name + " Id: " + circleId);
         HBox profileBox = new HBox();
         currentProfileBox = profileBox;
         profileBox.setAlignment(Pos.CENTER);

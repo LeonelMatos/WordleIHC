@@ -17,8 +17,8 @@
 ## Perfis
 
 - [x] Criar menu perfis
-- [ ] Criar perfis com password
-- [ ] Encriptar passwords dos perfis (saltar este)
+- [x] Criar perfis com password (Sem tempo)
+- [ ] Encriptar passwords dos perfis (Sem tempo)
 - [ ] Editar perfis
 - [x] Selecionar perfil
 
