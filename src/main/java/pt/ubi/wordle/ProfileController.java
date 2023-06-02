@@ -17,10 +17,7 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.scene.layout.Priority;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -58,8 +55,7 @@ public class ProfileController {
             }
             bufferedReader.close();
             readStream.close();
-
-            for (int index = 5; index < fileBuffer.size()-1; index++) {
+            for (int index = 5; index < fileBuffer.size(); index++) {
                 if (fileBuffer.get(index).isEmpty()) continue;
                 System.out.println("checking " + index);
                 line = fileBuffer.get(index);
@@ -68,7 +64,7 @@ public class ProfileController {
                     line = line.substring(1);
                 }
 
-                String[] values = line.split("\\|");
+                String[] values = line.split(";");
 
                 instantiateProfileBox(values[0], values[1]);
             }
@@ -85,6 +81,7 @@ public class ProfileController {
         profileCounter++;
         HBox profileBox = new HBox();
         currentProfileBox = profileBox;
+        profileBox.setId(String.valueOf(profileCounter));
         profileBox.setAlignment(Pos.CENTER);
         profileBox.setSpacing(50);
         profileBox.setPrefHeight(100);
@@ -136,7 +133,7 @@ public class ProfileController {
     }
 
     void instantiateProfileBox(String name, String circleId) {
-        System.out.println("Profile: " + name + circleId);
+        System.out.println("Profile:: Name: " + name + " Id: " + circleId);
         newProfileButton.setDisable(true);
         //Set ProfileBox
         profileCounter++;
@@ -178,18 +175,70 @@ public class ProfileController {
         nameLabel.setStyle(" -fx-font-family: Georgia;" + " -fx-font-size: 24px;" + " -fx-alignment: center;" + " -fx-font-weight: bold");
         vBox1.getChildren().add(nameLabel);
 
-        vBox2.getChildren().remove(0);
         Button create = new Button("Editar");
         create.setStyle(" -fx-background-color: #EEEEEE;" + " -fx-font-family: Georgia;" + " -fx-font-size: 14px;" + " -fx-font-weight: bold");
         vBox2.getChildren().add(0, create);
 
+        //X
+        Button remove = new Button("X");
+        remove.setStyle(" -fx-background-color: #FF6962;" + " -fx-font-family: Georgia;" + " -fx-font-size: 14px;" + " -fx-font-weight: bold");
+        remove.setOnAction(removeProfilePrompt);
+        vBox2.getChildren().add(remove);
+
         Button removeButton = (Button) vBox2.getChildren().get(1);
         removeButton.setOnAction(removeProfile);
-    }
 
+    }
 
     // Actions para editar/submeter/remover
     EventHandler<ActionEvent> removeProfile = actionEvent -> {
+
+        try {
+            File file = new File(filename);
+
+            FileReader readStream = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(readStream);
+
+            ArrayList<String> fileBuffer = new ArrayList<>();
+            String line;
+
+            while ((line = bufferedReader.readLine()) != null) {
+                fileBuffer.add(line);
+            }
+            bufferedReader.close();
+            readStream.close();
+
+            Button sourceButton = (Button) actionEvent.getSource();
+            VBox sourceBox = (VBox) sourceButton.getParent();
+            currentProfileBox = (HBox) sourceBox.getParent();
+
+            VBox vbox1 = (VBox) currentProfileBox.getChildren().get(1);
+
+            Label nameLabel = (Label) vbox1.getChildren().get(1);
+            String name = nameLabel.getText();
+
+            int index = 0;
+            for (int i = 0; i < fileBuffer.size(); i++) {
+                if (fileBuffer.get(i).contains(name)) {
+                    index = i;
+                }
+            }
+            System.out.println("removing " + fileBuffer.get(index));
+            fileBuffer.remove(index);
+
+            FileWriter writeStream = new FileWriter(file);
+
+            for (String lines : fileBuffer) {
+                writeStream.write(lines);
+                writeStream.write("\n");
+            }
+            writeStream.close();
+
+        }
+        catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+
         profileHolder.getChildren().remove(currentProfileBox);
         profileCounter--;
 
@@ -217,6 +266,42 @@ public class ProfileController {
 
         Button removeButton = (Button) vbox2.getChildren().get(1);
         removeButton.setOnAction(removeProfile);
+
+        try {
+            File file = new File(filename);
+
+            FileReader readStream = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(readStream);
+
+            ArrayList<String> fileBuffer = new ArrayList<>();
+            String line;
+
+            while ((line = bufferedReader.readLine()) != null) {
+                fileBuffer.add(line);
+            }
+            bufferedReader.close();
+            readStream.close();
+
+            String output = name + ";";
+
+            Circle colorId = (Circle) currentProfileBox.getChildren().get(0);
+
+
+            output = output + hexToRGBString(colorId.getFill().toString());
+
+            FileWriter writeStream = new FileWriter(file);
+
+            for (String lines : fileBuffer) {
+                writeStream.write(lines);
+                writeStream.write("\n");
+            }
+            writeStream.write(output);
+            writeStream.close();
+        }
+        catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
     };
 
     EventHandler<ActionEvent> removeProfilePrompt = actionEvent -> {
@@ -241,6 +326,16 @@ public class ProfileController {
         Scene newScene = new Scene(fxmlLoader.load());
         currentStage.setTitle("WordleIHC");
         currentStage.setScene(newScene);
+    }
+
+    public static String hexToRGBString(String hexColor) {
+        Color color = Color.valueOf(hexColor); // Create a Color object from the hex color
+
+        int red = (int) (color.getRed() * 255);     // Extract red component and convert to int
+        int green = (int) (color.getGreen() * 255); // Extract green component and convert to int
+        int blue = (int) (color.getBlue() * 255);   // Extract blue component and convert to int
+
+        return String.format("%02X%02X%02X", red, green, blue); // Format RGB values as a hex string
     }
 }
 

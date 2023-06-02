@@ -1,7 +1,5 @@
-en
-3
-toe
-1
+pt
+5
+word
+0
 .
->Leonel|D300FD
-João|AA3232
