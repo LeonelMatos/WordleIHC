@@ -18,8 +18,8 @@
 
 - [x] Criar menu perfis
 - [x] Criar perfis com password (Sem tempo)
-- [ ] Encriptar passwords dos perfis (Sem tempo)
-- [ ] Editar perfis
+- [x] Encriptar passwords dos perfis (Sem tempo)
+- [x] Editar perfis
 - [x] Selecionar perfil
 
 ## Leaderboard

@@ -454,7 +454,7 @@ public class GameController {
             bufferedReader.close();
             readStream.close();
 
-            fileBuffer.set(2, word);
+            fileBuffer.set(2, Encryption.aesAlgorithm(word, 1));
 
             FileWriter writeStream = new FileWriter(file);
 
@@ -465,6 +465,8 @@ public class GameController {
             writeStream.close();
         } catch (IOException e) {
             System.err.println(e.getMessage());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 

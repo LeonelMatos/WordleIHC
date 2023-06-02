@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.BufferedReader;
@@ -55,7 +56,7 @@ public class FinalController {
         wordText = "  " + readWord() + "  ";
         word.setText(wordText);
 
-        nAttempts = Integer.parseInt(readAttempts());
+        nAttempts = Integer.parseInt(readAttempts()) + 1;
 
         if (nAttempts < wordText.length() - 4) {
             emoji = "※\\(^o^)/※";
@@ -71,15 +72,15 @@ public class FinalController {
             attempts.setText(nAttempts + " tentativas\n" + emoji);
 
         pointsLabel.setText(points + " pontos");
-
         int profileCount = getProfileCount();
         //Cria novos labels na scoreboard
-        for (int i = 0; i < profileCount; i++) {
+        for (int i = 0; i <= profileCount; i++) {
             Label profileLabel = new Label();
             profileLabel.setStyle("-fx-font-family: Georgia;" +
                     "-fx-font-size: 18px;" +
                     "-fx-alignment: center;" +
-                    "-fx-font-weight: bold");
+                    "-fx-font-weight: bold;" +
+                    "-fx-text-fill: #333333");
             profileLabel.setText(readStats(i));
             profileHolder.getChildren().add(profileLabel);
 
