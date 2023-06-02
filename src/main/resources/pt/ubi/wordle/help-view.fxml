@@ -48,7 +48,7 @@
       <Separator prefWidth="200.0" style="-fx-background-color: #333333;" />
       <HBox alignment="CENTER" prefWidth="460.0" spacing="20.0">
          <children>
-              <Label fx:id="word" ellipsisString="     " style="-fx-background-color: A9D5B3;" text="     " HBox.hgrow="SOMETIMES">
+              <Label fx:id="word" ellipsisString="     " style="-fx-background-color: A9D5B3; -fx-border-color: #333333;" text="     " HBox.hgrow="SOMETIMES">
                   <font>
                       <Font name="Georgia Bold" size="36.0" />
                   </font>
@@ -68,7 +68,7 @@
       </HBox>
       <HBox alignment="CENTER" layoutX="30.0" layoutY="92.0" spacing="20.0">
          <children>
-            <Label fx:id="word1" ellipsisString="     " style="-fx-background-color: F1FFB2;" text="     ">
+            <Label fx:id="word1" ellipsisString="     " style="-fx-background-color: F1FFB2; -fx-border-color: #333333;" text="     ">
                <font>
                   <Font name="Georgia Bold" size="36.0" />
                </font>

@@ -309,6 +309,10 @@ public class ProfileController {
 
     };
 
+    EventHandler<ActionEvent> editProfile = actionEvent -> {
+        //Para continuar....
+    };
+
     EventHandler<ActionEvent> removeProfilePrompt = actionEvent -> {
         profileHolder.getChildren().remove(currentProfileBox);
         profileCounter--;
