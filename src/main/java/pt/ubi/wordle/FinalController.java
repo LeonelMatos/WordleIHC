@@ -58,8 +58,7 @@ public class FinalController {
 
         if (nAttempts < wordText.length() - 4) {
             emoji = "※\\(^o^)/※";
-        }
-        else  {
+        } else {
             successMessage = "Perdeste!";
             emoji = "(╥﹏╥)";
         }
@@ -79,7 +78,7 @@ public class FinalController {
                     "-fx-alignment: center;" +
                     "-fx-font-weight: bold;" +
                     "-fx-text-fill: #DDDDDD");
-            profileLabel.setText(readStats(i+5));
+            profileLabel.setText(readStats(i + 5));
             profileHolder.getChildren().add(profileLabel);
 
         }
@@ -105,8 +104,7 @@ public class FinalController {
             readStream.close();
 
             return fileBuffer.get(2);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.err.println(e.getMessage());
         }
         return "";
@@ -131,8 +129,7 @@ public class FinalController {
             readStream.close();
 
             return fileBuffer.get(3);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.err.println(e.getMessage());
         }
         return "";
@@ -157,14 +154,13 @@ public class FinalController {
             readStream.close();
 
             return fileBuffer.get(4);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.err.println(e.getMessage());
         }
         return "";
     }
 
-    String readStats (int index) {
+    String readStats(int index) {
         try {
 
             File file = new File(filename);
@@ -187,15 +183,14 @@ public class FinalController {
 
             return "Perfil " + (index - 4) + separator + values[0] + separator + values[2];
 
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.err.println(e.getMessage());
         }
 
         return "";
     }
 
-    int getProfileCount () {
+    int getProfileCount() {
         try {
             int count = 0;
 
@@ -212,8 +207,7 @@ public class FinalController {
             }
 
             return count - 5;
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.err.println(e.getMessage());
         }
         return 0;
@@ -259,8 +253,7 @@ public class FinalController {
             }
             writeStream.close();
 
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.err.println(e.getMessage());
         }
     }

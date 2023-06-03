@@ -140,7 +140,7 @@ public class ProfileController {
         //Set ProfileBox
         profileCounter++;
         if (profileCounter >= 3) newProfileButton.setDisable(true);
-        System.out.println("Profile " + profileCounter +":: Name: " + name + " Id: " + circleId);
+        System.out.println("Profile " + profileCounter + ":: Name: " + name + " Id: " + circleId);
         HBox profileBox = new HBox();
         currentProfileBox = profileBox;
         profileBox.setAlignment(Pos.CENTER);
@@ -377,8 +377,7 @@ public class ProfileController {
             String output = "";
             if (fileBuffer.get(index).contains(">")) {
                 output = fileBuffer.get(index).substring(1);
-            }
-            else output = fileBuffer.get(index);
+            } else output = fileBuffer.get(index);
 
             output = fileBuffer.get(index);
 

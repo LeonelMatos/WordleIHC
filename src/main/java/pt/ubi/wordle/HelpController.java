@@ -11,6 +11,7 @@ import java.io.IOException;
 public class HelpController {
     @FXML
     private Button exitButton;
+
     @FXML
     void handleExitButton() throws IOException {
         Stage currentStage = (Stage) exitButton.getScene().getWindow();
