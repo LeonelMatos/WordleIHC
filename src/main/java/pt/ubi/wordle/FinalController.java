@@ -6,13 +6,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 
@@ -47,11 +43,13 @@ public class FinalController {
     }
 
     @FXML
-    void initialize () throws Exception {
+    void initialize() throws Exception {
         String successMessage = "Bom Jogo!";
         int nAttempts;
         String emoji = "";
         String wordText = "";
+
+        writePoints();
 
         wordText = "  " + Encryption.aesAlgorithm(readWord(), 2) + "  ";
         word.setText(wordText);
@@ -85,6 +83,7 @@ public class FinalController {
             profileHolder.getChildren().add(profileLabel);
 
         }
+
     }
 
     String readWord() {
@@ -219,4 +218,51 @@ public class FinalController {
         }
         return 0;
     }
+
+    void writePoints() {
+        try {
+
+            File file = new File(filename);
+
+            FileReader readStream = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(readStream);
+
+            ArrayList<String> fileBuffer = new ArrayList<>();
+            String line;
+
+            while ((line = bufferedReader.readLine()) != null) {
+                fileBuffer.add(line);
+            }
+
+            bufferedReader.close();
+            readStream.close();
+
+            int index = 0;
+            for (int i = 5; i < fileBuffer.size(); i++) {
+                if (fileBuffer.get(i).contains(">"))
+                    index = i;
+            }
+
+            if (index == 0) return; //Guest
+
+            String[] values = fileBuffer.get(index).split(";");
+
+            String output = values[0] + ";" + values[1] + ";" + (Integer.parseInt(values[2]) + points);
+
+            fileBuffer.set(index, output);
+
+            FileWriter writeStream = new FileWriter(file);
+
+            for (String lines : fileBuffer) {
+                writeStream.write(lines);
+                writeStream.write("\n");
+            }
+            writeStream.close();
+
+        }
+        catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
 }
+

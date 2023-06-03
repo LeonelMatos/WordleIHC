@@ -24,8 +24,8 @@
 
 ## Leaderboard
 
-- [ ] Pontuação
-- [ ] Ranking (menu)
+- [x] Pontuação
+- [x] Ranking (menu)
 
 ## GamePlay
 
@@ -40,7 +40,7 @@
 - [x] Criar scene-view de final
 - [x] Passar palavra correta e mostrá-la no topo
 - [x] Mostrar no número de tentativas
-- [ ] Mostrar pontuação e leaderboard simplificada
+- [x] Mostrar pontuação e leaderboard simplificada
 
 ## Encriptação
 

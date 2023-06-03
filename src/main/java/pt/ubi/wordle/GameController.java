@@ -382,7 +382,7 @@ public class GameController {
     }
 
     String readProfileName() {
-        String name = "";
+        String name = "Convidado";
         try {
             File file = new File(filename);
 
