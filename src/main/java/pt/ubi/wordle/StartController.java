@@ -34,7 +34,7 @@ public class StartController {
         Stage currentStage = (Stage) bntPlay.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("game-view.fxml"));
         Scene newScene = new Scene(fxmlLoader.load());
-        currentStage.setTitle("Wordle Game");
+        currentStage.setTitle("Wordle Jogo");
         currentStage.setScene(newScene);
     }
 
@@ -43,7 +43,7 @@ public class StartController {
         Stage currentStage = (Stage) bntPlay.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("settings-view.fxml"));
         Scene newScene = new Scene(fxmlLoader.load());
-        currentStage.setTitle("Wordle Settings");
+        currentStage.setTitle("Wordle Definições");
         currentStage.setScene(newScene);
     }
 
@@ -52,7 +52,7 @@ public class StartController {
         Stage currentStage = (Stage) bntProfile.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("help-view.fxml"));
         Scene newScene = new Scene(fxmlLoader.load());
-        currentStage.setTitle("Wordle Help");
+        currentStage.setTitle("Wordle Ajuda");
         currentStage.setScene(newScene);
     }
 
@@ -61,7 +61,7 @@ public class StartController {
         Stage currentStage = (Stage) bntProfile.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("profile-view.fxml"));
         Scene newScene = new Scene(fxmlLoader.load());
-        currentStage.setTitle("Wordle Profile");
+        currentStage.setTitle("Wordle Perfil");
         currentStage.setScene(newScene);
     }
 
@@ -69,6 +69,15 @@ public class StartController {
     protected void handleExitButton() throws IOException {
         Stage currentStage = (Stage) bntProfile.getScene().getWindow();
         currentStage.close();
+    }
+
+    @FXML
+    protected void handleCreditsView() throws IOException {
+        Stage currentStage = (Stage) bntProfile.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("credits-view.fxml"));
+        Scene newScene = new Scene(fxmlLoader.load());
+        currentStage.setTitle("Wordle Créditos");
+        currentStage.setScene(newScene);
     }
 
     //Selecionar a dificuldade com base no dropdown selecionado

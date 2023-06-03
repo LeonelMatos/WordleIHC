@@ -65,16 +65,27 @@
                   <Font name="Georgia Bold" size="18.0" />
                </font>
             </Button>
-            <Button fx:id="bntSetting1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleExitButton" style="-fx-background-color: ff6962;" text="Sair" textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font name="Georgia Bold" size="18.0" />
-               </font>
-            </Button>
          </children>
          <VBox.margin>
             <Insets left="50.0" right="50.0" />
          </VBox.margin>
       </VBox>
+      <BorderPane>
+         <top>
+            <Button fx:id="bntSetting1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleExitButton" style="-fx-background-color: ff6962;" text="Sair" textAlignment="CENTER" textFill="WHITE" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="Georgia Bold" size="18.0" />
+               </font>
+            </Button>
+         </top>
+         <right>
+            <Label onMouseClicked="#handleCreditsView" text="v.1.0.0" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="Georgia Bold" size="14.0" />
+               </font>
+            </Label>
+         </right>
+      </BorderPane>
    </children>
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

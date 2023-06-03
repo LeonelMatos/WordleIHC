@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="500.0" spacing="20.0" style="-fx-background-color: #DDDDDD;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ubi.wordle.CreditsController">
+   <children>
+      <BorderPane>
+         <left>
+            <Button fx:id="btnExit" mnemonicParsing="false" onAction="#handleExitButton" style="-fx-background-color: ff6962;" text="Voltar" textFill="WHITE" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="Georgia Bold" size="18.0" />
+               </font>
+            </Button>
+         </left>
+         <center>
+            <Label text="Créditos" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="Georgia Bold" size="36.0" />
+               </font>
+            </Label>
+         </center>
+      </BorderPane>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" VBox.vgrow="SOMETIMES">
+         <children>
+            <Label text="Trabalho realizado por:">
+               <font>
+                  <Font name="Georgia Bold" size="18.0" />
+               </font>
+            </Label>
+            <Separator style="-fx-background-color: #333333;" />
+            <Label text="Joel Vaz">
+               <font>
+                  <Font name="Georgia Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label text="Leonel Matos">
+               <font>
+                  <Font name="Georgia Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+</VBox>
