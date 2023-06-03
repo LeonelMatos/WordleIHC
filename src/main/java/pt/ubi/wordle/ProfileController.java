@@ -139,7 +139,6 @@ public class ProfileController {
         newProfileButton.setDisable(false);
         //Set ProfileBox
         profileCounter++;
-        //TODO if (profileCounter >= 3) newProfileButton.setDisable(true);
         System.out.println("Profile " + profileCounter + ":: Name: " + name + " Id: " + circleId);
         HBox profileBox = new HBox();
         currentProfileBox = profileBox;
@@ -253,8 +252,7 @@ public class ProfileController {
     };
 
     EventHandler<ActionEvent> submitProfilePrompt = actionEvent -> {
-        //Verifica se existem demasiados perfis. 4+ pode partir a view
-        if (profileHolder.getChildren().size() < 3) newProfileButton.setDisable(false);
+        newProfileButton.setDisable(false);
 
         VBox vbox1 = (VBox) currentProfileBox.getChildren().get(1);
         TextField nameField = (TextField) vbox1.getChildren().get(1);

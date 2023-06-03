@@ -179,7 +179,7 @@ public class FinalController {
 
             String[] values = line.split(";");
 
-            return "Perfil\t" + (index - 4) + "\t\t" + values[0] + "\t\t" + values[2];
+            return "Perfil " + (index - 4) + "   ----------   " + values[0] + "   ----------   " + values[2];
 
         } catch (IOException e) {
             System.err.println(e.getMessage());
