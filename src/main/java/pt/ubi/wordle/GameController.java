@@ -495,7 +495,7 @@ public class GameController {
                 writeStream.write("\n");
             }
             writeStream.close();
-            System.out.println("Made " + attempts + " attempts (づ｡◕‿‿◕｡)づ");
+            System.out.println("Made " + (attempts + 1) + " attempts (づ｡◕‿‿◕｡)づ");
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }

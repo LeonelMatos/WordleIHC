@@ -29,7 +29,7 @@
             </Label>
          </center>
       </BorderPane>
-      <ScrollPane style="-fx-background-color: #EEEEEE;" VBox.vgrow="SOMETIMES">
+      <ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: #EEEEEE;" VBox.vgrow="SOMETIMES">
          <content>
             <VBox fx:id="profileHolder" alignment="CENTER" spacing="20.0" style="-fx-background-color: #EEEEEE;" />
          </content>
