@@ -139,11 +139,12 @@ public class ProfileController {
         newProfileButton.setDisable(false);
         //Set ProfileBox
         profileCounter++;
-        if (profileCounter >= 3) newProfileButton.setDisable(true);
+        //TODO if (profileCounter >= 3) newProfileButton.setDisable(true);
         System.out.println("Profile " + profileCounter + ":: Name: " + name + " Id: " + circleId);
         HBox profileBox = new HBox();
         currentProfileBox = profileBox;
         profileBox.setAlignment(Pos.CENTER);
+        HBox.setHgrow(profileBox, Priority.SOMETIMES);
         profileBox.setSpacing(50);
         profileBox.setPrefHeight(100);
         profileBox.setPrefWidth(200);

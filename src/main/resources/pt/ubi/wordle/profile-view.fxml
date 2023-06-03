@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -28,7 +29,11 @@
             </Label>
          </center>
       </BorderPane>
-      <VBox fx:id="profileHolder" alignment="CENTER" spacing="20.0" style="-fx-background-color: #EEEEEE;" VBox.vgrow="SOMETIMES" />
+      <ScrollPane style="-fx-background-color: #EEEEEE;" VBox.vgrow="SOMETIMES">
+         <content>
+            <VBox fx:id="profileHolder" alignment="CENTER" spacing="20.0" style="-fx-background-color: #EEEEEE;" />
+         </content>
+      </ScrollPane>
        <Button fx:id="newProfileButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#instantiateProfileBox" style="-fx-background-color: #ACB0F2;" text="Novo" textAlignment="CENTER" textFill="WHITE" VBox.vgrow="SOMETIMES">
            <font>
                <Font name="Georgia Bold" size="18.0" />
