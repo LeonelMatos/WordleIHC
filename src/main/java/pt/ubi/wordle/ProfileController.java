@@ -250,9 +250,6 @@ public class ProfileController {
 
         profileHolder.getChildren().remove(currentProfileBox);
         profileCounter--;
-
-        if (profileCounter < 3) newProfileButton.setDisable(false);
-        System.out.println("Counter:::: " + profileCounter);
     };
 
     EventHandler<ActionEvent> submitProfilePrompt = actionEvent -> {

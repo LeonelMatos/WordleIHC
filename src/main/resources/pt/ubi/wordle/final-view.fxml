@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
@@ -35,7 +36,11 @@
          </font>
       </Label>
       <Separator prefWidth="200.0" style="-fx-background-color: #333333;" />
-      <VBox fx:id="profileHolder" alignment="CENTER" prefHeight="200.0" prefWidth="50.0" style="-fx-background-color: #333333;" />
+      <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0">
+         <content>
+            <VBox fx:id="profileHolder" alignment="CENTER" prefHeight="200.0" prefWidth="50.0" style="-fx-background-color: #333333;" />
+         </content>
+      </ScrollPane>
       <Button fx:id="btnExit" mnemonicParsing="false" onAction="#handleExitButton" style="-fx-background-color: ff6962;" text="Voltar" textFill="WHITE">
          <font>
             <Font name="Georgia Bold" size="18.0" />
