@@ -47,13 +47,13 @@ public class FinalController {
     }
 
     @FXML
-    void initialize () {
+    void initialize () throws Exception {
         String successMessage = "Bom Jogo!";
         int nAttempts;
         String emoji = "";
         String wordText = "";
 
-        wordText = "  " + readWord() + "  ";
+        wordText = "  " + Encryption.aesAlgorithm(readWord(), 2) + "  ";
         word.setText(wordText);
 
         nAttempts = Integer.parseInt(readAttempts()) + 1;
@@ -74,14 +74,14 @@ public class FinalController {
         pointsLabel.setText(points + " pontos");
         int profileCount = getProfileCount();
         //Cria novos labels na scoreboard
-        for (int i = 0; i <= profileCount; i++) {
+        for (int i = 0; i < profileCount; i++) {
             Label profileLabel = new Label();
             profileLabel.setStyle("-fx-font-family: Georgia;" +
                     "-fx-font-size: 18px;" +
                     "-fx-alignment: center;" +
                     "-fx-font-weight: bold;" +
-                    "-fx-text-fill: #333333");
-            profileLabel.setText(readStats(i));
+                    "-fx-text-fill: #DDDDDD");
+            profileLabel.setText(readStats(i+5));
             profileHolder.getChildren().add(profileLabel);
 
         }
@@ -186,7 +186,7 @@ public class FinalController {
 
             String separator = "        ";
 
-            return "Perfil " + index + separator + values[0] + separator + values[2];
+            return "Perfil " + (index - 4) + separator + values[0] + separator + values[2];
 
         }
         catch (IOException e) {
